@@ -1,0 +1,6 @@
+.tab-content {
+    -fx-background-image: url('img/amPanBack.jpg.bak');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-opacity: 0.75;
+}

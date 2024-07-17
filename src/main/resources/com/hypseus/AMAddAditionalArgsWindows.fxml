@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypseus.AMAddAditionalArgsWindows">
+   <children>
+      <Label layoutX="50.0" layoutY="20.0" text="Insert additional arguments" AnchorPane.bottomAnchor="327.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <TextField fx:id="AMText" alignment="CENTER" layoutX="50.0" layoutY="150.0" promptText="insert here" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="150.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <Button fx:id="AMSave" layoutX="138.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#AMAddArgsSaveClicked" prefHeight="50.0" prefWidth="150.0" text="Save" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="347.0" AnchorPane.topAnchor="275.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="AMCancel" layoutX="485.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#AMAddArgsCancelClicked" prefHeight="50.0" prefWidth="150.0" text="Cancel" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="347.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="275.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

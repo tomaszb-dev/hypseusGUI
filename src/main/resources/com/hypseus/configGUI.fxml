@@ -1,0 +1,1023 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypseus.configGUI">
+   <stylesheets>
+      <URL value="@style.css" />
+   </stylesheets>
+   <children>
+      <TabPane maxHeight="1080.0" maxWidth="1920.0" prefHeight="900.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab fx:id="hypseusConfigTab" styleClass="ConfigTab" text="Hypseus Config">
+               <content>
+                  <GridPane alignment="CENTER" style="-fx-background-image: url('configGui.jpg'); -fx-background-size: cover; -fx-background-repeat: no-repeat;">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="40.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="60.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints percentHeight="5.0" vgrow="ALWAYS" />
+                        <RowConstraints percentHeight="15.0" vgrow="ALWAYS" />
+                        <RowConstraints percentHeight="5.0" vgrow="ALWAYS" />
+                        <RowConstraints percentHeight="15.0" vgrow="ALWAYS" />
+                        <RowConstraints percentHeight="5.0" vgrow="ALWAYS" />
+                        <RowConstraints percentHeight="55.0" vgrow="ALWAYS" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Launch hypseus with choosen attributes" textAlignment="JUSTIFY" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextArea fx:id="systemInfo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </TextArea>
+                        <Label alignment="CENTER" text="Display information" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="5.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label alignment="CENTER" text="System information" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                        <GridPane GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+                           <rowConstraints>
+                              <RowConstraints maxHeight="108.33332125345865" minHeight="10.0" prefHeight="81.99995930989583" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="100.33332570393881" minHeight="10.0" prefHeight="62.66664632161459" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="127.3333740234375" minHeight="10.0" prefHeight="114.00002034505209" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <TextField fx:id="attributeLine" alignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets right="25.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Button fx:id="saveTempAttrib" alignment="TOP_CENTER" mnemonicParsing="false" onMouseClicked="#saveTmpAtt" prefHeight="39.0" prefWidth="89.0" styleClass="Button50L" text="Save" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </GridPane.margin>
+                              </Button>
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints />
+                              <ColumnConstraints maxWidth="855.6667073567709" minWidth="0.0" prefWidth="0.0" />
+                           </columnConstraints>
+                           <GridPane.margin>
+                              <Insets right="5.0" />
+                           </GridPane.margin>
+                        </GridPane>
+                        <GridPane GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                           <rowConstraints>
+                              <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="47.99999237060547" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="99.33333587646484" minHeight="10.0" prefHeight="78.00000762939453" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="65.33334350585938" minHeight="10.0" prefHeight="54.33335367838541" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <TextField fx:id="pathTobinary" alignment="CENTER" editable="false" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                                 <GridPane.margin>
+                                    <Insets right="25.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <columnConstraints>
+                              <ColumnConstraints />
+                              <ColumnConstraints maxWidth="94.6666259765625" minWidth="0.0" prefWidth="0.0" />
+                           </columnConstraints>
+                        </GridPane>
+                        <Label alignment="CENTER" contentDisplay="TEXT_ONLY" style=" ,;" text="Choose the path to hypseus binary file" textAlignment="JUSTIFY" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextArea fx:id="displayInfo" prefHeight="224.0" prefWidth="420.0" style="-fx-background-color: lightblue;" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </TextArea>
+                        <GridPane GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button fx:id="binaryPath" mnemonicParsing="false" onAction="#setBinaryPath" text="Path to binary" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                              </Button>
+                           </children>
+                        </GridPane>
+                        <GridPane GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="101.33331298828125" minHeight="10.0" prefHeight="92.00002034505208" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="192.33331298828125" minHeight="10.0" prefHeight="40.99997965494792" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="127.33331298828125" minHeight="10.0" prefHeight="126.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button fx:id="launchBinary" mnemonicParsing="false" onAction="#LaunchWithAttributes" styleClass="Button50L" text="Launch" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+               </content>
+            </Tab>
+            <Tab fx:id="daphneConfigTab" styleClass="ConfigTab" text="Daphne">
+               <content>
+                  <GridPane fx:id="DPGridPane" alignment="CENTER" style="-fx-background-image: url('dapnheGUI.jpg'); -fx-background-size: cover; -fx-background-repeat: no-repeat;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="55.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="45.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="56.333333333333336" minHeight="50.333333333333336" prefHeight="50.333333333333336" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="79.0" minHeight="73.0" prefHeight="79.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="740.6666603088379" minHeight="542.3333587646484" percentHeight="85.0" prefHeight="740.6666603088379" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="AMPathSelection1" mnemonicParsing="false" onAction="#AMPathSelect" prefHeight="51.0" prefWidth="152.0" styleClass="Button50R" text="Path selection" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <TextField fx:id="AMGamesSelectiontxt1" alignment="CENTER" editable="false" prefHeight="58.0" prefWidth="668.0" promptText="Path to Daphne Games" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="43.0" prefWidth="701.0" text="                          Daphne Games Settings" textAlignment="JUSTIFY" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="AMGamesFound1" alignment="CENTER" prefWidth="368.0" style="-fx-background-color: azure;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="100.0" right="100.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <GridPane GridPane.rowIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.33331298828125" minWidth="10.0" percentWidth="32.0" prefWidth="177.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="241.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="42.333343505859375" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="42.333343505859375" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="77.66666158040366" minHeight="10.0" prefHeight="52.33335367838541" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="70.00002034505209" minHeight="0.0" prefHeight="59.66664632161459" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="95.33333333333334" minHeight="10.0" prefHeight="50.33331298828125" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="49.6666259765625" minHeight="10.0" prefHeight="38.6666259765625" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="47.33331298828125" minHeight="10.0" prefHeight="32.666707356770814" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="42.000020345052064" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="47.33331298828125" minHeight="10.0" prefHeight="32.666646321614564" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="52.33331298828125" minHeight="10.0" prefHeight="43.333353678385436" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="60.333333333333314" minHeight="10.0" prefHeight="56.999959309895814" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="91.66670735677081" minHeight="10.0" prefHeight="71.00004069010419" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="90.00006103515625" minHeight="10.0" prefHeight="61.00002034505212" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="69.3333740234375" minHeight="10.0" percentHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <CheckBox fx:id="forceAspect1" mnemonicParsing="false" onMouseClicked="#onForceAspectClick" prefHeight="48.0" prefWidth="221.0" text="force_aspect_ratio" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox fx:id="gamepad1" mnemonicParsing="false" prefHeight="44.0" prefWidth="223.0" text="gamepad" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <HBox alignment="TOP_CENTER" prefHeight="54.0" prefWidth="278.0" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                                 <children>
+                                    <Button fx:id="aletrnateHypinut1" mnemonicParsing="false" prefHeight="45.0" prefWidth="201.0" text="Choose hypinput file">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <CheckBox fx:id="fullScreen1" mnemonicParsing="false" prefHeight="46.0" prefWidth="223.0" text="fullscreen" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="52.0" prefWidth="195.0" text="bezel" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <Button fx:id="pngBezel1" mnemonicParsing="false" prefHeight="47.0" prefWidth="200.0" text="Choose png bezel" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </Button>
+                              <CheckBox mnemonicParsing="false" prefHeight="51.0" prefWidth="195.0" text="keymapfile" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox fx:id="ignoreAspectRatio1" mnemonicParsing="false" onMouseClicked="#onIgnoreAspectClick" prefHeight="49.0" prefWidth="223.0" text="ignore_aspect_ratio" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="45.0" prefWidth="195.0" text="scalefactor" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="10" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <Slider blockIncrement="1.0" min="25.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <CheckBox mnemonicParsing="false" prefHeight="48.0" prefWidth="223.0" text="linear_scale" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="43.0" prefWidth="223.0" text="scorepanel" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="51.0" prefWidth="223.0" text="tiphat" GridPane.rowIndex="9">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="51.0" prefWidth="221.0" text="vertical_screen" GridPane.rowIndex="10">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="59.0" prefWidth="278.0" text="original_overlay" GridPane.rowIndex="11">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="48.0" prefWidth="223.0" text="scorebezel" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="52.0" prefWidth="223.0" text="scanlines" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="52.0" prefWidth="195.0" text="manymouse" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="46.0" prefWidth="195.0" text="nocrosshair" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="51.0" prefWidth="195.0" text="scanline_alpha" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="45.0" prefWidth="195.0" text="vertical_stretch " GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="53.0" prefWidth="194.0" text="scanline_shunt" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <Button fx:id="saveALGconf1" mnemonicParsing="false" onMouseClicked="#AMGameConfig" text="   Save    " GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="14" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <ChoiceBox fx:id="multiSingleGames1" onAction="#multiGameConfigSelect" value="Single setup for all" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="14" GridPane.vgrow="SOMETIMES">
+                                 <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="Single setup for all" />
+                                       <String fx:value="Single game setup" />
+                                    </FXCollections>
+                                 </items>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                              </ChoiceBox>
+                              <Slider GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                              <Slider GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="65.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" prefHeight="20.0" prefWidth="99.0" text="shiftx" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" prefHeight="20.0" prefWidth="97.0" text="shifty" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <TextField alignment="CENTER" promptText="X" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField alignment="CENTER" prefWidth="181.0" promptText="Y" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </GridPane>
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="9">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.3333740234375" minWidth="143.666748046875" percentWidth="50.0" prefWidth="166.3333740234375" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.66658528645831" minWidth="110.99995930989581" prefWidth="110.99995930989581" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" prefHeight="56.0" prefWidth="137.0" text="usbscoreboard" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <TextField prefWidth="125.0" promptText="&lt;args&gt;" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </GridPane>
+                              <CheckBox mnemonicParsing="false" prefHeight="53.0" prefWidth="195.0" text="scorepanel_pos" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="10">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" prefHeight="20.0" prefWidth="141.0" text="blank_searches">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="blankSkips1" mnemonicParsing="false" prefHeight="20.0" prefWidth="146.0" text="blank_skips" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <TextField GridPane.columnIndex="1" />
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="11">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <TextField alignment="CENTER" prefHeight="37.0" prefWidth="278.0" promptText="X">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField alignment="CENTER" prefHeight="47.0" prefWidth="278.0" promptText="Y" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </GridPane>
+                              <Slider GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                              <CheckBox mnemonicParsing="false" prefHeight="59.0" prefWidth="278.0" text="fastboot" GridPane.columnIndex="1" GridPane.rowIndex="12">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <GridPane GridPane.rowIndex="12">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <RadioButton fx:id="openglSelectAm2" mnemonicParsing="false" onMouseClicked="#onOpenglClickAm" prefHeight="30.0" prefWidth="111.0" text="opengl">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </RadioButton>
+                                    <RadioButton fx:id="vulkanSelectAm2" mnemonicParsing="false" onMouseClicked="#onVulkanClickAm" prefHeight="28.0" prefWidth="111.0" text="vulkan" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </RadioButton>
+                                 </children>
+                              </GridPane>
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="12">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <RadioButton mnemonicParsing="false" prefHeight="27.0" prefWidth="167.0" text="texturestream">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </RadioButton>
+                                    <RadioButton mnemonicParsing="false" prefHeight="20.0" prefWidth="169.0" text="texturetarget" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </RadioButton>
+                                 </children>
+                              </GridPane>
+                           </children>
+                           <GridPane.margin>
+                              <Insets left="5.0" />
+                           </GridPane.margin>
+                        </GridPane>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </GridPane>
+               </content></Tab>
+            <Tab fx:id="AMTabPane" styleClass="ConfigTab" text="American Laser Games">
+               <content>
+                  <GridPane fx:id="AMGridPane" alignment="CENTER" style="-fx-background-image: url('amPanBack.jpg'); -fx-background-size: cover; -fx-background-repeat: no-repeat;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="55.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="45.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="56.333333333333336" minHeight="40.666666666666664" prefHeight="48.00001017252604" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="89.0" minHeight="57.33331298828124" prefHeight="65.33331298828125" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="764.6666870117188" minHeight="542.3333587646484" percentHeight="85.0" prefHeight="756.6666870117188" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="AMPathSelection" mnemonicParsing="false" onAction="#AMPathSelect" prefHeight="51.0" prefWidth="152.0" styleClass="Button50R" text="Path selection" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <TextField fx:id="AMGamesSelectiontxt" alignment="CENTER" editable="false" prefHeight="58.0" prefWidth="668.0" promptText="Path to American Laser Games" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="43.0" prefWidth="701.0" text="                    American Laser Games Settings" textAlignment="JUSTIFY" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="AMGamesFound" alignment="CENTER" prefWidth="368.0" style="-fx-background-color: azure;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="100.0" right="100.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <GridPane GridPane.rowIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="32.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="40.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="49.33333333333334" minHeight="10.0" prefHeight="45.99998982747397" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="52.66666666666666" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="57.33333333333334" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="106.0" minHeight="10.0" prefHeight="57.33333333333334" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="117.0" minHeight="10.0" prefHeight="54.66666666666666" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="183.33334350585938" minHeight="10.0" prefHeight="52.666646321614564" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="186.66665649414062" minHeight="10.0" prefHeight="55.666646321614564" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="173.3333740234375" minHeight="10.0" prefHeight="37.999979654947936" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="169.6666259765625" minHeight="10.0" prefHeight="52.333292643229186" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="168.0" minHeight="10.0" prefHeight="59.33333333333337" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="90.66668701171875" minHeight="10.0" prefHeight="59.3333740234375" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="83.33329264322913" minHeight="10.0" prefHeight="60.6666259765625" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="126.0" minHeight="10.0" percentHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <CheckBox fx:id="forceAspect" mnemonicParsing="false" onMouseClicked="#onForceAspectClick" prefHeight="48.0" prefWidth="221.0" text="force_aspect_ratio">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox fx:id="jsrange" mnemonicParsing="false" onMouseClicked="#selectedJsRange" prefHeight="48.0" prefWidth="194.0" text="js range" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <Spinner fx:id="jsrangeFill" prefHeight="46.0" prefWidth="284.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
+                              <CheckBox fx:id="gamepad" mnemonicParsing="false" prefHeight="44.0" prefWidth="223.0" text="gamepad" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox fx:id="sinden" mnemonicParsing="false" onMouseClicked="#selectedSinden" prefHeight="48.0" prefWidth="195.0" text="sinden" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <HBox alignment="TOP_CENTER" prefHeight="54.0" prefWidth="278.0" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                                 <children>
+                                    <Spinner fx:id="sindenFill1" prefHeight="51.0" prefWidth="181.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Spinner>
+                                    <ComboBox fx:id="sindenFill2" prefHeight="46.0" prefWidth="103.0" HBox.hgrow="SOMETIMES">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                 </children>
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                              </HBox>
+                              <CheckBox fx:id="fullScreen" mnemonicParsing="false" prefHeight="46.0" prefWidth="223.0" text="fullscreen" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox fx:id="AMbezelCheckBox" mnemonicParsing="false" onMouseClicked="#bezelChecked" prefHeight="52.0" prefWidth="195.0" text="bezel" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <Button fx:id="AMpngBezel" mnemonicParsing="false" onMouseClicked="#AMpngSelectBezel" prefHeight="47.0" prefWidth="200.0" text="Choose png bezel" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </Button>
+                              <CheckBox mnemonicParsing="false" prefHeight="51.0" prefWidth="195.0" text="keymapfile" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <Button fx:id="aletrnateHypinut" mnemonicParsing="false" prefHeight="45.0" prefWidth="201.0" text="Choose hypinput file" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </Button>
+                              <CheckBox fx:id="ignoreAspectRatio" mnemonicParsing="false" onMouseClicked="#onIgnoreAspectClick" prefHeight="49.0" prefWidth="223.0" text="ignore_aspect_ratio" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox fx:id="AMscaleFactor" mnemonicParsing="false" onMouseClicked="#onAMScalefactorSet" prefHeight="45.0" prefWidth="195.0" text="scalefactor" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="48.0" prefWidth="223.0" text="linear_scale" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="43.0" prefWidth="223.0" text="scorepanel" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="51.0" prefWidth="223.0" text="tiphat" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="51.0" prefWidth="221.0" text="vertical_screen" GridPane.rowIndex="9">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="46.0" prefWidth="223.0" text="8bit_overlay" GridPane.rowIndex="10">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="59.0" prefWidth="278.0" text="original_overlay" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="48.0" prefWidth="223.0" text="scorebezel" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="52.0" prefWidth="223.0" text="scanlines" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="45.0" prefWidth="195.0" text="blend_sprites" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="52.0" prefWidth="195.0" text="manymouse" GridPane.rowIndex="11">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="46.0" prefWidth="195.0" text="nocrosshair" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox fx:id="AMscaleAlpha" mnemonicParsing="false" onMouseClicked="#onAMScanAlphaSet" prefHeight="51.0" prefWidth="195.0" text="scanline_alpha" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="45.0" prefWidth="195.0" text="vertical_stretch " GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <CheckBox mnemonicParsing="false" prefHeight="53.0" prefWidth="194.0" text="scanline_shunt" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <Button fx:id="saveALGconf" mnemonicParsing="false" onMouseClicked="#AMGameConfig" text="   Save    " GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="13" GridPane.vgrow="SOMETIMES">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <ChoiceBox fx:id="multiSingleGames" onAction="#multiGameConfigSelect" value="Single setup for all" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="13" GridPane.vgrow="SOMETIMES">
+                                 <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="Single setup for all" />
+                                       <String fx:value="Single game setup" />
+                                    </FXCollections>
+                                 </items>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                              </ChoiceBox>
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="11">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="65.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" prefHeight="20.0" prefWidth="99.0" text="shiftx" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox mnemonicParsing="false" prefHeight="20.0" prefWidth="97.0" text="shifty" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <TextField alignment="CENTER" promptText="X" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField alignment="CENTER" prefWidth="181.0" promptText="Y" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </GridPane>
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.3333740234375" minWidth="143.666748046875" percentWidth="50.0" prefWidth="166.3333740234375" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.66658528645831" minWidth="110.99995930989581" prefWidth="110.99995930989581" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" prefHeight="56.0" prefWidth="137.0" text="usbscoreboard" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <TextField prefWidth="125.0" promptText="&lt;args&gt;" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </GridPane>
+                              <CheckBox mnemonicParsing="false" prefHeight="53.0" prefWidth="195.0" text="scorepanel_pos" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                                 <font>
+                                    <Font name="System Bold" size="17.0" />
+                                 </font>
+                              </CheckBox>
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="9">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" prefHeight="20.0" prefWidth="141.0" text="blank_searches">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="blankSkips" mnemonicParsing="false" prefHeight="20.0" prefWidth="146.0" text="blank_skips" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <TextField GridPane.columnIndex="1" />
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="10">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <TextField alignment="CENTER" prefHeight="37.0" prefWidth="278.0" promptText="X">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField alignment="CENTER" prefHeight="17.0" prefWidth="278.0" promptText="Y" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </GridPane>
+                              <GridPane GridPane.rowIndex="12">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <RadioButton fx:id="openglSelectAm" mnemonicParsing="false" onMouseClicked="#onOpenglClickAm" prefHeight="30.0" prefWidth="111.0" text="opengl">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </RadioButton>
+                                    <RadioButton fx:id="vulkanSelectAm" mnemonicParsing="false" onMouseClicked="#onVulkanClickAm" prefHeight="28.0" prefWidth="111.0" text="vulkan" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </RadioButton>
+                                 </children>
+                              </GridPane>
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="12">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <RadioButton mnemonicParsing="false" prefHeight="27.0" prefWidth="167.0" text="texturestream">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </RadioButton>
+                                    <RadioButton mnemonicParsing="false" prefHeight="20.0" prefWidth="169.0" text="texturetarget" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </RadioButton>
+                                 </children>
+                              </GridPane>
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="43.66668701171875" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                 </rowConstraints>
+                                 <children>
+                                    <Slider fx:id="AMScaleFactorSlider" blockIncrement="1.0" majorTickUnit="5.0" min="25.0" minorTickCount="5" onMouseClicked="#AMScaleFset" showTickLabels="true" showTickMarks="true" GridPane.rowIndex="10" />
+                                    <Label fx:id="AMScaleFSliderView" alignment="CENTER" contentDisplay="CENTER" text="25%" textAlignment="JUSTIFY" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="30.333311080932617" minHeight="10.0" prefHeight="17.999979654947918" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="53.000000953674316" minHeight="10.0" prefHeight="35.33335367838542" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Slider fx:id="AMScanLAlphaSilder" blockIncrement="25.0" max="255.0" min="1.0" minorTickCount="1" onMouseClicked="#AMScanAlphaSet" showTickLabels="true" showTickMarks="true" GridPane.rowIndex="1" />
+                                    <Label fx:id="AMScanASliderView" text="1" textAlignment="JUSTIFY" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Slider majorTickUnit="5.0" max="255.0" min="1.0" minorTickCount="1" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="25.3333740234375" minHeight="10.0" prefHeight="25.3333740234375" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="33.33331298828125" minHeight="10.0" prefHeight="30.6666259765625" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Slider GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                              <Button fx:id="AMAdditionalArgs" mnemonicParsing="false" onMouseClicked="#AMAddAditionalArgs" prefHeight="46.0" prefWidth="195.0" text="Additional arguments" GridPane.columnIndex="1" GridPane.rowIndex="12">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                           </children>
+                           <GridPane.margin>
+                              <Insets left="5.0" />
+                           </GridPane.margin>
+                        </GridPane>
+                        <ListView fx:id="configAmList" disable="true" fixedCellSize="0.0" onMouseClicked="#onAMlistSelect" style="-fx-font-size: 20;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+                           <GridPane.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </GridPane.margin>
+                        </ListView>
+                     </children>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </GridPane>
+               </content></Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

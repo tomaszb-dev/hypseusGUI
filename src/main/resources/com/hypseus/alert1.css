@@ -1,0 +1,16 @@
+label.content{
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+.label {
+    -fx-font-size: 18px;
+}
+.header-panel {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-font-size: 16px;
+    -fx-background-color: #cccccc;
+}

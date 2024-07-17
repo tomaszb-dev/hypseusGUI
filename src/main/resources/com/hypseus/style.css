@@ -1,0 +1,85 @@
+.HypseusGuiColumnsLeft {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    height: 300px;
+    color:red;
+}
+
+.HypseusGuiColumnsCenter {
+    float: left;
+    width: 40%;
+    padding: 10px;
+    height: 300px;
+}
+
+.HypseusGuiColumnsRight {
+    float: left;
+    width: 40%;
+    padding: 10px;
+    height: 300px;
+}
+.VideoPlayer {
+
+}
+
+.Button50L {
+   -fx-font-size: 18 vw;
+   -fx-font-weight: normal;
+   -fx-background-color: radial-gradient(center 50% 50% , radius 100%, #4eaad7, #5f9dd2);
+
+}
+
+.Button50L:hover {
+    -fx-font-size: 18 vw;
+    -fx-font-weight: bold;
+    -fx-background-color: radial-gradient(center 50% 50% , radius 100% , #7cc5f4, #74c0f4);
+}
+
+
+.Button50R {
+    float: right;
+    padding: 10px;
+    width: 50%;
+    height: 100%;
+    background: rgb(179,235,252);
+    -fx-font-size: 18 vw;
+}
+
+.hypseusLogo {
+    -fx-fit-width: 80%;
+    -fx-fit-height: 80%;
+}
+
+.VideoPlay {
+    -fx-padding: 10px 20px 120px 20px; /* top, right, bottom, left */
+}
+
+.GridButtons {
+    -fx-padding: 0px 10px 100px 10px; /* top, right, bottom, left */
+}
+
+.gamePoster {
+    -fx-fit-width: 80%;
+    -fx-fit-height: 80%;
+}
+
+.GameListView {
+    -fx-font-size: 16 vw;
+    -fx-font-weight: bold;
+}
+
+.GameInfoView {
+    -fx-font-size: 16 vw;
+    -fx-font-weight: bold;
+}
+
+.AMTab{
+    -fx-font-size: 16 vw;
+    -fx-font-weight: bold;
+}
+
+.ConfigTab {
+    -fx-font-size: 16 vw;
+    -fx-font-weight: bold;
+}
