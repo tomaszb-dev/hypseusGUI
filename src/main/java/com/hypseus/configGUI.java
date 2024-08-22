@@ -3,12 +3,8 @@ package com.hypseus;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import javafx.application.Platform;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.collections.transformation.TransformationList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,12 +21,16 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.net.URL;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javafx.scene.layout.GridPane;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
@@ -42,119 +42,194 @@ import oshi.software.os.OperatingSystem;
 
 
 public class configGUI implements Initializable {
-
     public ChoiceBox multiSingleGames;
     OperatingSystem os;
     String gfx;
     String display;
     String AMbezelFile;
-    private Button openArgsButton;
-
-    @FXML
-    private Tab configTab = new Tab();
-    @FXML
-    private Tab hypseusConfigTab = new Tab();
-    @FXML
-    private Tab AMConfigTab = new Tab();
-    @FXML
-    private AnchorPane hypseusConfigAnchor = new AnchorPane();
-    @FXML
-    private Tab daphneConfigTab = new Tab();
-    @FXML
-    private GridPane daphenConfigGridPane = new GridPane();
-    @FXML
-    private Button AMSearchGames = new Button();
-    @FXML
-    private Button daphnePathSelection = new Button();
-    @FXML
-    private Button AMPathSelection = new Button();
-    @FXML
-    private Button saveALGconf = new Button();
-    @FXML
-    private Button daphneGameSelect = new Button();
-    @FXML
-    private Button AMGameSelection = new Button();
+    // AnchorPane
     @FXML
     private AnchorPane AMAnchorPane = new AnchorPane();
     @FXML
     private AnchorPane daphneAnchorPane = new AnchorPane();
     @FXML
-    private GridPane AMGridPane = new GridPane();
+    private AnchorPane hypseusConfigAnchor = new AnchorPane();
+
+    // Button
     @FXML
-    private TextField AMGamesSelectiontxt = new TextField();
+    private Button AMGameSelection = new Button();
     @FXML
-    private TextField daphneSelectiontxt = new TextField();
+    private Button AMPathSelection = new Button();
     @FXML
-    private TextField daphneGamesSelectiontxt = new TextField();
-    PathCfg pathCfg;
+    private Button AMSearchGames = new Button();
     @FXML
-    private ListView configAmList = new ListView();
+    private Button AMpngBezel = new Button();
     @FXML
-    Button folderConf = new Button("Folder Config");
+    private Button binaryPath = new Button();
     @FXML
-    Button searchGames = new Button("Search Games");
+    private Button daphneGameSelect = new Button();
     @FXML
-    CheckBox jsrange = new CheckBox();
+    private Button daphnePathSelection = new Button();
     @FXML
-    Spinner jsrangeFill = new Spinner();
+    private Button folderConf = new Button("Folder Config");
     @FXML
-    Spinner sindenFill1 = new Spinner();
+    private Button launchBinary = new Button();
     @FXML
-    ComboBox sindenFill2 = new ComboBox();
+    private Button openArgsButton;
+    @FXML
+    private Button saveALGconf = new Button();
+    @FXML
+    private Button saveTempAttrib = new Button();
+    @FXML
+    private Button searchGames = new Button("Search Games");
+
+    // CheckBox
+    @FXML
+    private CheckBox AMEightBit = new CheckBox();
+    @FXML
+    private CheckBox AMManyMouse = new CheckBox();
+    @FXML
+    private CheckBox AMOrginalOverlay = new CheckBox();
+    @FXML
+    private CheckBox AMScoreBezel = new CheckBox();
+    @FXML
+    private CheckBox AMScorePanel = new CheckBox();
+    @FXML
+    private CheckBox AMVerticalStretch = new CheckBox();
+    @FXML
+    private CheckBox AMbezelCheckBox = new CheckBox();
+    @FXML
+    private CheckBox AMblendSprites = new CheckBox();
+    @FXML
+    private CheckBox AMforceAspect = new CheckBox();
+    @FXML
+    private CheckBox AMgamepad = new CheckBox();
+    @FXML
+    private CheckBox AMignoreAspectRatio = new CheckBox();
+    @FXML
+    private CheckBox AMlinearscale = new CheckBox();
+    @FXML
+    private CheckBox AMnocrosshair = new CheckBox();
+    @FXML
+    private CheckBox AMscanlines = new CheckBox();
+    @FXML
+    private CheckBox AMscaleAlpha = new CheckBox();
+    @FXML
+    private CheckBox AMscaleFactor = new CheckBox();
+    @FXML
+    private CheckBox AMScanlineShunt = new CheckBox();
+    @FXML
+    private CheckBox AMtiphatBox = new CheckBox();
+    @FXML
+    private CheckBox AMverticalscreen = new CheckBox();
+    @FXML
+    private CheckBox DPScorePanel = new CheckBox();
+    @FXML
+    private CheckBox fullScreen = new CheckBox();
+    @FXML
+    private CheckBox jsrange = new CheckBox();
     @FXML
     CheckBox sinden = new CheckBox();
     @FXML
-    TextArea systemInfo = new TextArea();
+    CheckBox AMusbscore = new CheckBox();
+    // ComboBox
     @FXML
-    TextArea displayInfo = new TextArea();
-    @FXML
-    Button binaryPath = new Button();
-    @FXML
-    TextField pathTobinary = new TextField();
-    @FXML
-    Button launchBinary = new Button();
-    @FXML
-    TextField attributeLine = new TextField();
-    @FXML
-    Button saveTempAttrib = new Button();
-    @FXML
-    TextField AMGamesFound = new TextField();
-    @FXML
-    CheckBox fullScreen = new CheckBox();
-    @FXML
-    CheckBox forceAspect = new CheckBox();
-    @FXML
-    CheckBox ignoreAspectRatio = new CheckBox();
-    @FXML
-    RadioButton openglSelectAm = new RadioButton();
-    @FXML
-    RadioButton vulkanSelectAm = new RadioButton();
-    @FXML
-    GridPane AMGridePane = new GridPane();
-    @FXML
-    Slider AMScaleFactorSlider = new Slider();
-    @FXML
-    CheckBox AMscaleFactor = new CheckBox();
-    @FXML
-    Label AMScaleFSliderView = new Label();
-    @FXML
-    Slider AMscaleFactorSlider = new Slider();
-    @FXML
-    Label AMScanASliderView = new Label();
-    @FXML
-    Slider AMScanLAlphaSilder = new Slider();
-    @FXML
-    CheckBox AMscaleAlpha = new CheckBox();
-    @FXML
-    Button AMpngBezel = new Button();
-    @FXML
-    CheckBox AMbezelCheckBox = new CheckBox();
-    @FXML
-    SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1);
+    private ComboBox sindenFill2 = new ComboBox();
 
+    // GridPane
     @FXML
+    private GridPane AMGridPane = new GridPane();
+    @FXML
+    private GridPane daphenConfigGridPane = new GridPane();
+
+    // Label
+    @FXML
+    private Label AMScaleFSliderView = new Label();
+    @FXML
+    private Label AMScanASliderView = new Label();
+    @FXML
+    private Label AMScanlinesShuntView = new Label();
+    @FXML
+    private Label AMVerticalStretchView = new Label();
+
+    // ListView
+    @FXML
+    private ListView configAmList = new ListView();
+
+    // PathCfg
+    PathCfg pathCfg;
+
+    // RadioButton
+    @FXML
+    private RadioButton AMopengl = new RadioButton();
+    @FXML
+    private RadioButton AMtexturestream = new RadioButton();
+    @FXML
+    private RadioButton AMtexturetarget = new RadioButton();
+    @FXML
+    private RadioButton AMvulkan = new RadioButton();
+
+    // Slider
+    @FXML
+    private Slider AMScaleFactorSlider = new Slider();
+    @FXML
+    private Slider AMScanAlphaSilder = new Slider();
+    @FXML
+    private Slider AMVerticalStretchSlider = new Slider();
+    @FXML
+    private Slider AMscanShuntSlider = new Slider();
+
+    // Spinner
+    @FXML
+    private Spinner AMjsrangeFill = new Spinner();
+    @FXML
+    private Spinner sindenFill1 = new Spinner();
+
+    // SpinnerValueFactory
+    @FXML
+    private SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1);
+
+    // Tab
+    @FXML
+    private Tab AMConfigTab = new Tab();
+    @FXML
+    private Tab configTab = new Tab();
+    @FXML
+    private Tab daphneConfigTab = new Tab();
+    @FXML
+    private Tab hypseusConfigTab = new Tab();
+
+    // TextArea
+    @FXML
+    private TextArea displayInfo = new TextArea();
+    @FXML
+    private TextArea systemInfo = new TextArea();
+
+    // TextField
+    @FXML
+    private TextField AMGamesFound = new TextField();
+    @FXML
+    private TextField AMGamesSelectiontxt = new TextField();
+    @FXML
+    private TextField attributeLine = new TextField();
+    @FXML
+    private TextField daphneGamesSelectiontxt = new TextField();
+    @FXML
+    private TextField daphneSelectiontxt = new TextField();
+    @FXML
+    private TextField pathTobinary = new TextField();
+    @FXML
+    TextField AMScorePanelX = new TextField();
+    @FXML
+    TextField AMScorePanelY = new TextField();
+    @FXML
+    TextField AMusbscoreFill = new TextField();
+
+    /**
+     * Method to check the Daphne folders for games
+     * @return A list of found games
+     */
     public void DaphnePathSelect(ActionEvent event) {
-
         final String[] pliki = new String[2];
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setInitialDirectory(new File("src"));
@@ -174,6 +249,10 @@ public class configGUI implements Initializable {
         }
     }
 
+    /*
+     * Method to check the AM folders for games
+     * @return A list of found games
+     */
     public void AMPathSelect(ActionEvent event) {
         final String[] pliki = new String[2];
         DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -196,7 +275,7 @@ public class configGUI implements Initializable {
                 AMGamesSelectiontxt.setText(selectedFile.toString());
                 AMGamesFound.setText(count + " game(s) found");
             } else {
-                URL css = getClass().getResource("/hypseus/com/alert1.css");
+                URL css = getClass().getResource("alert1.css");
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.getDialogPane().getStylesheets().add(css.toString());
                 alert.setTitle(null);
@@ -209,7 +288,12 @@ public class configGUI implements Initializable {
         }
     }
 
-
+    /**
+     * Method to check the American Laser Games folders for games
+     *
+     * @param fileCheck The folder to check for games
+     * @return A list of found games
+     */
     public List<String> checkAMGameFolders(File fileCheck) {
         int count = 0;
         List<String> amFoundGames = new ArrayList<>();
@@ -234,7 +318,12 @@ public class configGUI implements Initializable {
 
         return amFoundGames;
     }
-
+    /**
+     * Method to update the MYDIR path in the game.singe file
+     *
+     * @param folderFile The game.singe file to update
+     * @param pathName   The new path to set
+     */
     private void updateSingeFileName(File folderFile, String pathName) {
         File tempFile = new File(folderFile.getAbsolutePath() + ".new");
 
@@ -277,53 +366,53 @@ public class configGUI implements Initializable {
         }
     }
 
-    @FXML
-/*    protected void setsearchGames() {
-        List<String> games = new ArrayList<>();
-        dataDeSerialize("pconfig.cfg");
-        String daphnePath = pathCfg.getDaphnePath();
-        String americanPath = pathCfg.getAmericanPath();
-        File daphneDir = new File(daphnePath);
-        File americanDir = new File(americanPath);
-        if (americanDir.exists()) {
-            if (americanDir.isDirectory()) {
-                for (File file : americanDir.listFiles()) {
-                    if (file.isDirectory()) {
-                        for (File fileGame : file.listFiles()) {
-                            if (fileGame.getName().equals(file.getName())) {
-                                String gameString = fileGame.getName();
-                                int position = gameString.lastIndexOf(".");
-                                gameString = gameString.substring(0, position) + ".txt";
-                                File gameTxt = new File(fileGame.getParent() + "\\" + gameString);
-                                if (gameTxt.exists()) {
-                                    games.add(gameString);
-                                    configAmList.getItems().add(gameString);
-                                }
+    /* @FXML
+     protected void setsearchGames() {
+         List<String> games = new ArrayList<>();
+         dataDeSerialize("pconfig.cfg");
+         String daphnePath = pathCfg.getDaphnePath();
+         String americanPath = pathCfg.getAmericanPath();
+         File daphneDir = new File(daphnePath);
+         File americanDir = new File(americanPath);
+         if (americanDir.exists()) {
+             if (americanDir.isDirectory()) {
+                 for (File file : americanDir.listFiles()) {
+                     if (file.isDirectory()) {
+                         for (File fileGame : file.listFiles()) {
+                             if (fileGame.getName().equals(file.getName())) {
+                                 String gameString = fileGame.getName();
+                                 int position = gameString.lastIndexOf(".");
+                                 gameString = gameString.substring(0, position) + ".txt";
+                                 File gameTxt = new File(fileGame.getParent() + "\\" + gameString);
+                                 if (gameTxt.exists()) {
+                                     games.add(gameString);
+                                     configAmList.getItems().add(gameString);
+                                 }
 
-                            }
-                        }
-                    }
-                }
-                int count = games.size();
-                String plur = "";
-                if (count == 1)
-                    plur = "Game";
-                else
-                    plur = "Games";
+                             }
+                         }
+                     }
+                 }
+                 int count = games.size();
+                 String plur = "";
+                 if (count == 1)
+                     plur = "Game";
+                 else
+                     plur = "Games";
 
-                showMessageWindow("There is " + count + " " + "AmericanLaser" + plur);
-                saveAmList(games);
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "You have to set paths to Daphne and American Laser Games folders", ButtonType.OK);
-                alert.getDialogPane().getStylesheets().add("com/hypseus/alert.css");
-                alert.showAndWait();
-            }
-        }
-    }
-*/
+                 showMessageWindow("There is " + count + " " + "AmericanLaser" + plur);
+                 saveAmList(games);
+             } else {
+                 Alert alert = new Alert(Alert.AlertType.ERROR, "You have to set paths to Daphne and American Laser Games folders", ButtonType.OK);
+                 alert.getDialogPane().getStylesheets().add("com/hypseus/alert.css");
+                 alert.showAndWait();
+             }
+         }
+     }
+ */
     private void showMessageWindow(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.getDialogPane().getStylesheets().add("com/hypseus/alert.css");
+        alert.getDialogPane().getStylesheets().add("alert1.css");
         alert.setTitle("Message");
         alert.setHeaderText("");
         alert.setContentText(message);
@@ -334,6 +423,11 @@ public class configGUI implements Initializable {
         ;
     }
 
+    /**
+     * Method to save the list of found games to a file
+     *
+     * @param games The list of found games
+     */
     private void saveAmList(List<String> games) {
         try {
             FileWriter fileWriter = new FileWriter("amlist.lst");
@@ -351,6 +445,9 @@ public class configGUI implements Initializable {
         }
     }
 
+    /**
+     * Method to show sysinfo
+     */
     @FXML
     private void showSystemInfo(String gameInfo) {
         try {
@@ -360,6 +457,9 @@ public class configGUI implements Initializable {
         }
     }
 
+    /**
+     * Method to show display info
+     */
     private void showDisplayInfo(String gfx) {
         String input = gfx;
         String name = "";
@@ -375,10 +475,12 @@ public class configGUI implements Initializable {
         }
     }
 
-    @FXML
+    /**
+     * Method to show read error alert window
+     */
     private void showWriteErrorWindow(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.getDialogPane().getStylesheets().add("com/hypseus/alert.css");
+        alert.getDialogPane().getStylesheets().add("alert1.css");
         alert.setTitle("File write error");
         alert.setHeaderText("File write error");
         alert.setContentText(message);
@@ -389,7 +491,9 @@ public class configGUI implements Initializable {
         ;
     }
 
-
+    /**
+     * Method to serialize data for the config file
+     */
     private void dataSerialize(String configFileName) {
         // Gson dataser = new Gson();
         Gson dataser = new GsonBuilder().setPrettyPrinting().create();
@@ -406,6 +510,9 @@ public class configGUI implements Initializable {
 
     }
 
+    /**
+     * Method to deserialize data from the config file
+     */
     private void dataDeSerialize(String configFileName) {
         Gson dataDeser = new Gson();
         try {
@@ -418,66 +525,13 @@ public class configGUI implements Initializable {
         }
     }
 
-    public void selectedJsRange(MouseEvent mouseEvent) {
-        if (jsrange.isSelected())
-            jsrangeFill.setDisable(false);
-        else
-            jsrangeFill.setDisable(true);
-    }
-
-    public void selectedSinden(MouseEvent mouseEvent) {
-        if (sinden.isSelected()) {
-            sindenFill1.setDisable(false);
-            sindenFill2.setDisable(false);
-        } else {
-            sindenFill1.setDisable(true);
-            sindenFill2.setDisable(true);
-        }
-    }
-
-    // one config for all games
-    public void saveALGconf(ActionEvent actionEvent) {
-        String sysModeWindows = "hypseus.exe";
-        String options = sysModeWindows + " ";
-        if (openglSelectAm.isSelected() == true)
-            options += " -opengl";
-        if (vulkanSelectAm.isSelected() == true)
-            options += " -vulkan";
-        if (forceAspect.isSelected())
-            options += " -force_aspect_ratio";
-        if (ignoreAspectRatio.isSelected())
-            options += " -ignore_aspect_ratio";
-        if (jsrange.isSelected())
-            options += "-jsrange " + jsrangeFill.getValue().toString();
-        if (sinden.isSelected()) {
-            options += " -siden " + sindenFill1.getValue().toString();
-            String color = sindenFill2.getSelectionModel().getSelectedItem().toString();
-            char c = ' ';
-            switch (color) {
-                case "white":
-                    c = 'w';
-                    break;
-                case "green":
-                    c = 'g';
-                    break;
-                case "red":
-                    c = 'r';
-                    break;
-                case "blue":
-                    c = 'b';
-                    break;
-                default:
-                    c = 'x';
-                    break;
-            }
-            options += " " + c;
-        }
-
-        System.out.println(options);
-    }
-
+    /**
+     * Method to set the path to the binary file hypseus
+     */
     public void setBinaryPath(ActionEvent actionEvent) {
-        String plik = "";
+        String binaryPath = "";
+        String nameOS = "os.name";
+        String os = System.getProperty(nameOS);
         FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 
@@ -485,16 +539,24 @@ public class configGUI implements Initializable {
         dialog.initModality(Modality.APPLICATION_MODAL);
         File selectedFile = fileChooser.showOpenDialog(dialog);
         if (selectedFile != null) {
-            plik = selectedFile.toString();
+            binaryPath = selectedFile.toString();
+            System.out.println(" ----> " + binaryPath);
             dialog.close();
             pathTobinary.setText(selectedFile.toString());
             try {
                 FileWriter pathfile = new FileWriter("path.cfg");
-                pathfile.write(plik);
+                if (os.contains("Windows")) {
+                    pathfile.write("\"" + binaryPath + "\"");
+                } else {
+                    pathfile.write("\'" + binaryPath + "\'");
+                }
+
                 pathfile.close();
+                updatePathsInConfigFiles("cfg/single", "path.cfg");
+
             } catch (IOException ex) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.getDialogPane().getStylesheets().add("com/hypseus/alert.css");
+                alert.getDialogPane().getStylesheets().add("alert1.css");
                 alert.setContentText(ex.getMessage());
                 alert.showAndWait();
             }
@@ -503,6 +565,57 @@ public class configGUI implements Initializable {
         }
     }
 
+    /**
+     * Method to update path to binary file hypseus if changed and write it to config file
+     */
+    private static void updatePathsInConfigFiles(String folderPath, String pathConfigFile) throws IOException {
+        // Read the new path from the "path.cfg" file
+        String newPath;
+        try (BufferedReader reader = new BufferedReader(new FileReader(pathConfigFile))) {
+            newPath = reader.readLine().trim();
+        }
+
+        // List all .cfg files in the specified folder
+        File folder = new File(folderPath);
+        File[] listOfFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".cfg"));
+
+        if (listOfFiles != null) {
+            for (File file : listOfFiles) {
+                // Read the content of the file, replace the old executable path with the new path, and save the changes
+                List<String> lines;
+                try (Stream<String> stream = Files.lines(Paths.get(file.getPath()))) {
+                    lines = stream.map(line -> replaceExecutablePath(line, newPath))
+                            .collect(Collectors.toList());
+                }
+
+                // Write the modified content back to the file
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                    for (String line : lines) {
+                        writer.write(line);
+                        writer.newLine();
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Helper method for updatePathsInConfigFiles method to replace the executable path in a line
+     */
+    private static String replaceExecutablePath(String line, String newPath) {
+        int index = line.indexOf("singe");
+        if (index > 0) {
+            String oldPath = line.substring(0, index).trim();
+            if (!oldPath.isEmpty()) {
+                line = line.replace(oldPath, newPath);
+            }
+        }
+        return line;
+    }
+
+    /**
+     * Method to read config file
+     */
     private void readConfig() {
         try {
             File file = new File("path.cfg");
@@ -520,6 +633,9 @@ public class configGUI implements Initializable {
 
     }
 
+    /**
+     * Method to launch binary file hypseus with attributes on MS Windows OS
+     */
     private void runOnWindows(String path, String attributes) {
         String[] pathSplit = path.split("\\\\");
         path = pathSplit[0];
@@ -527,9 +643,10 @@ public class configGUI implements Initializable {
             path = path + "\\" + pathSplit[i];
         }
         String binary = pathSplit[pathSplit.length - 1];
+        String launchLine = path + "\\" + binary + " " + attributes;
         ProcessBuilder builder = new ProcessBuilder(
-                "cmd.exe", "/c", path + "\\" + binary + " " + attributes);
-        System.out.println(path + "\\" + binary + " " + attributes);
+                //   "cmd.exe", "/c","\"" + path + "\\" + binary, attributes);
+                "cmd.exe", "/c", launchLine);
         builder.redirectErrorStream(true);
         try {
             Process p = builder.start();
@@ -540,13 +657,16 @@ public class configGUI implements Initializable {
                 if (line == null) {
                     break;
                 }
-                System.out.println(line);
+                r.close();
             }
         } catch (Exception launcexcp) {
             System.out.println(launcexcp.getMessage() + "System message");
         }
     }
 
+    /**
+     * Method to launch binary file hypseus with attributes on Unix like OSes
+     */
     private void runOnUnix(String path, String attributes) {
         String[] pathSplit = path.split("\\\\");
         path = pathSplit[0];
@@ -563,8 +683,9 @@ public class configGUI implements Initializable {
             binaryNX = matcher.replaceAll(replacement);
         }
         System.out.println(binary);
+        String launchLine = binaryNX + " " + attributes;
         ProcessBuilder builder = new ProcessBuilder(
-                "bash", "-c", binaryNX + " " + attributes);
+                "bash", "-c", launchLine);
         builder.redirectErrorStream(true);
         try {
             Process p = builder.start();
@@ -575,29 +696,60 @@ public class configGUI implements Initializable {
                 if (line == null) {
                     break;
                 }
-                System.out.println(line);
+                r.close();
             }
         } catch (Exception launcexcp) {
             System.out.println(launcexcp.getMessage() + "System message");
         }
     }
 
-    @FXML
-    private void LaunchWithAttributes(ActionEvent actionEvent) {
-        String path = "";
-        String attributes = "";
-        path = pathTobinary.getText();
-        attributes = attributeLine.getText();
-        String systemInfo = os.toString();
-        if (systemInfo.contains("Windows")) {
-            runOnWindows(path, attributes);
-        } else {
-            runOnUnix(path, attributes);
-        }
-    }
+    /*// one config for all games
+  public void saveALGconf(ActionEvent actionEvent) {
+      String sysModeWindows = "hypseus.exe";
+      String options = sysModeWindows + " ";
+      if (openglSelectAm.isSelected() == true)
+          options += " -opengl";
+      if (vulkanSelectAm.isSelected() == true)
+          options += " -vulkan";
+      if (forceAspect.isSelected())
+          options += " -force_aspect_ratio";
+      if (ignoreAspectRatio.isSelected())
+          options += " -ignore_aspect_ratio";
+      if (jsrange.isSelected())
+          options += "-jsrange " + AMjsrangeFill.getValue().toString();
+      if (sinden.isSelected()) {
+          options += " -siden " + sindenFill1.getValue().toString();
+          String color = sindenFill2.getSelectionModel().getSelectedItem().toString();
+          char c = ' ';
+          switch (color) {
+              case "white":
+                  c = 'w';
+                  break;
+              case "green":
+                  c = 'g';
+                  break;
+              case "red":
+                  c = 'r';
+                  break;
+              case "blue":
+                  c = 'b';
+                  break;
+              default:
+                  c = 'x';
+                  break;
+          }
+          options += " " + c;
+      }
 
+      System.out.println(options);
+  }*/
+
+    /**
+     * Method to savein tempAttrib.cfg the handwritten attributes for AM games
+     */
     @FXML
-    private void saveTmpAtt(ActionEvent actionEvent) {
+    private void saveTmpAtt(MouseEvent actionEvent) {
+        System.out.println("Saving temp attributes");
         String attributes = attributeLine.getText();
         try {
             FileWriter pathfile = new FileWriter("tempAttrib.cfg");
@@ -605,12 +757,15 @@ public class configGUI implements Initializable {
             pathfile.close();
         } catch (IOException ex) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.getDialogPane().getStylesheets().add("com/hypseus/alert.css");
+            alert.getDialogPane().getStylesheets().add("alert1.css");
             alert.setContentText(ex.getMessage());
             alert.showAndWait();
         }
     }
 
+    /**
+     * Method to read the saved handwritten attributes from the tempAttrib.cfg file
+     */
     private void getsavedTempAttrib() {
         String attributes = "";
         try {
@@ -625,6 +780,26 @@ public class configGUI implements Initializable {
         attributeLine.setText(attributes);
     }
 
+    /**
+     * Method to launch binary file hypseus with handwritten attributes
+     */
+    @FXML
+    private void LaunchWithAttributes(ActionEvent actionEvent) {
+        String path = "";
+        String attributes = "";
+        path = pathTobinary.getText();
+        attributes = attributeLine.getText();
+        String systemInfo = os.toString();
+        if (systemInfo.contains("Windows")) {
+            runOnWindows(path, attributes);
+        } else {
+            runOnUnix(path, attributes);
+        }
+    }
+
+    /**
+     * Method to gather graphic card info
+     */
     private String parseGfxData() {
         String dataToparse = gfx;
         int number = dataToparse.indexOf("name");
@@ -644,6 +819,9 @@ public class configGUI implements Initializable {
         return resultGfx;
     }
 
+    /**
+     * Method to read from path.cfg file the path to the binary file hypseus
+     */
     private String readBinaryPath() {
         String pathToBinary = "";
         try {
@@ -657,7 +835,9 @@ public class configGUI implements Initializable {
         }
         return pathToBinary;
     }
-
+    /**
+     * Helper method to handle sinden attribute values
+     */
     private void setSindenValues(String numberSinden, String colorCode) {
         String colorSinden = colorCode;
         switch (colorSinden) {
@@ -689,8 +869,10 @@ public class configGUI implements Initializable {
         sindenFill2.setValue(colorSinden);
     }
 
+    /**
+     * Method to read config line with attributes for AM games and set the values in the GUI for single config for all AM games
+     */
     private void setConfigAMPanelAIO() {
-
         // Initialize the spinner's value factory
         //  sindenFill1.setValueFactory(valueFactory);
         File conf = new File("cfg/aio/aioGames.cfg");
@@ -701,87 +883,199 @@ public class configGUI implements Initializable {
                     // Process -sinden option
                     Pattern checkSinden = Pattern.compile("-sinden\\s+([1-9]|10)\\s+(x|w|r|g|b)");
                     Matcher sindenFound = checkSinden.matcher(line);
+                    // Process -js_range option
+                    Pattern checkjs = Pattern.compile("-js_range\\s+([1-9]|20)");
+                    Matcher jsFound = checkjs.matcher(line);
+                    Pattern checkScaleFactor = Pattern.compile("-scalefactor\\s*(\\d{2,3})(.*)");
+                    Matcher scaleFacFound = checkScaleFactor.matcher(line);
+                    Pattern checkScanlineAlpha = Pattern.compile("-scanline_alpha\\s*(\\d{1,3})(.*)");
+                    Matcher scanlineAlphaFound = checkScanlineAlpha.matcher(line);
+                    Pattern checkScanlineShunt = Pattern.compile("-scanline_shunt\\s*(\\d{1,2})(.*)");
+                    Matcher scanlineShuntFound = checkScanlineShunt.matcher(line);
+                    Pattern checkVerticalSkretch = Pattern.compile("-vertical_stretch\\s*(\\d{1,2})(.*)");
+                    Matcher verticalSkretchFound = checkVerticalSkretch.matcher(line);;
+                    /*Pattern usbScoreBoard = Pattern.compile("-usbscore?\\s*(\\d{1,2})(.*)");
+                    Matcher usbScoreBoardFound = usbScoreBoard.matcher(line);
+                    System.out.println(usbScoreBoardFound.group(1));*/
+                    if(line.contains("-usbscoreboard")) {
+                        AMusbscore.setSelected(true);
+                        AMusbscoreFill.setDisable(false);
+                        int numb = line.indexOf("-usbscoreboard");
+                        String scoreboard = line.substring(numb + 15);
+                        numb = scoreboard.indexOf(" ");
+                        if (numb > 0)
+                            scoreboard = scoreboard.substring(0, numb);
+                        AMusbscoreFill.setText(scoreboard);
+
+                    } else {
+                        AMusbscore.setSelected(false);
+                        AMusbscoreFill.setDisable(true);
+                    }
+
                     if (sindenFound.find()) {
                         String numberSinden = sindenFound.group(1);
                         String colorCode = sindenFound.group(2);
-                        Platform.runLater(() -> setSindenValues(numberSinden, colorCode));
-                    } else {
-                        sinden.setSelected(false);
+                    //    Platform.runLater(() -> setSindenValues(numberSinden, colorCode));
                         Platform.runLater(() -> {
+                            sinden.setSelected(true);
+                            sindenFill1.setDisable(false);
+                            sindenFill2.setDisable(false);
+                            setSindenValues(numberSinden, colorCode);
+                            AMManyMouse.setDisable(true);
+                        });
+                    } else {
+                        Platform.runLater(() -> {
+                            sinden.setSelected(false);
                             sindenFill1.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1));
                             sindenFill2.setValue("x");
                             sindenFill1.setDisable(true);
                             sindenFill2.setDisable(true);
                         });
                     }
-
-                    // Process -js_range option
-                    Pattern checkjs = Pattern.compile("-js_range\\s+([1-9]|20)");
-                    Matcher jsFound = checkjs.matcher(line);
                     if (jsFound.find()) {
                         String jsRange = jsFound.group(1);
                         jsrange.setSelected(true);
                         System.out.println("Enabling and setting Spinner for jsRange to: " + jsRange);
+                        final SpinnerValueFactory<Integer> jsValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20, Integer.parseInt(jsRange));
                         Platform.runLater(() -> {
-                            jsrangeFill.setDisable(false);
-                            SpinnerValueFactory<Integer> jsValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20, Integer.parseInt(jsRange));
-                            jsrangeFill.setValueFactory(jsValueFactory);
+                            jsrange.setSelected(true);
+                            AMjsrangeFill.setDisable(false);
+                            AMjsrangeFill.setValueFactory(jsValueFactory);
                         });
                     } else {
                         jsrange.setSelected(false);
+                        AMjsrangeFill.setDisable(true);
                         Platform.runLater(() -> {
-                            jsrangeFill.setDisable(true);
-                            jsrangeFill.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20, 1));
+                            AMjsrangeFill.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20, 1));
                         });
                     }
 
                     // Process -fullscreen option
-                    String finalLine = line;
+                    final String finalLine = line;
                     Platform.runLater(() -> fullScreen.setSelected(finalLine.contains("-fullscreen")));
 
                     // Process -force_aspect_ratio option
-                    String finalLine1 = line;
-                    Platform.runLater(() -> forceAspect.setSelected(finalLine1.contains("-force_aspect_ratio")));
+                    Platform.runLater(() -> AMforceAspect.setSelected(finalLine.contains("-force_aspect_ratio")));
+
 
                     // Process -scalefactor option
-                    if (line.contains("-scalefactor")) {
-                        AMscaleFactor.setSelected(true);
-                        int startIndex = line.indexOf("-scalefactor") + "-scalefactor".length();
-                        String scaleFac = line.substring(startIndex).trim();
-                        int scaleFacInt = Integer.parseInt(scaleFac);
+                    if (scaleFacFound.find()) {
+                        //    if (finalLine.contains("-scalefactor")) {
+                        //     AMscaleFactorSlider.setValue(Integer.parseInt(scaleFacFound.group(1)));
+                        //     int startIndex = line.indexOf("-scalefactor") + "-scalefactor".length();
+                        //     String scaleFac = line.substring(startIndex).trim();
+                        int scaleFacInt = Integer.parseInt(scaleFacFound.group(1));
+                        final int scaleFac = scaleFacInt;
+                       /* Timeline timeline = new Timeline();
+                        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(250), e -> sliderMovement(scaleFac)));
+                        timeline.setCycleCount(1);
+                        timeline.play();*/
                         Platform.runLater(() -> {
-                            AMscaleFactorSlider.setDisable(false);
-                            AMscaleFactorSlider.setValue(scaleFacInt);
+                            AMscaleFactor.setSelected(true);
+                            AMScaleFactorSlider.setDisable(false);
+                            AMScaleFactorSlider.setValue(scaleFac);
+                            AMScaleFSliderView.setText((scaleFac) + "%");
+                            AMScaleFSliderView.setDisable(false);
+
                         });
                     } else {
-                        AMscaleFactor.setSelected(false);
-                        Platform.runLater(() -> AMscaleFactorSlider.setDisable(true));
+                        Platform.runLater(() -> {
+                            AMscaleFactor.setSelected(false);
+                            AMScaleFactorSlider.setDisable(true);
+
+                        });
                     }
 
                     // Process -scanline_alpha option
-                    if (line.contains("-scanline_alpha")) {
-                        AMscaleAlpha.setSelected(true);
-                        int startIndex = line.indexOf("-scanline_alpha") + "-scanline_alpha".length();
+                    if (scanlineAlphaFound.find()) {
+                        
+                       /* int startIndex = line.indexOf("-scanline_alpha") + "-scanline_alpha".length();
                         String scaleAlp = line.substring(startIndex).trim();
-                        int scaleAlpInt = Integer.parseInt(scaleAlp);
+                        int scaleAlpInt = Integer.parseInt(scaleAlp);*/
+                        int scaleAlpInt = Integer.parseInt(scanlineAlphaFound.group(1));
                         Platform.runLater(() -> {
-                            AMScanLAlphaSilder.setDisable(false);
-                            AMScanLAlphaSilder.setValue(scaleAlpInt);
+                            AMscaleAlpha.setSelected(true);
+                            AMScanAlphaSilder.setDisable(false);
+                            AMScanAlphaSilder.setValue(scaleAlpInt);
+                            AMScanASliderView.setDisable(false);
                         });
                     } else {
                         AMscaleAlpha.setSelected(false);
-                        Platform.runLater(() -> AMScanLAlphaSilder.setDisable(true));
+                        Platform.runLater(() -> AMScanAlphaSilder.setDisable(true));
                     }
 
-                    // Process -bezel option
-                    if (line.contains("-bezel")) {
-                        AMbezelCheckBox.setSelected(true);
-                        AMbezelFile = line.substring(line.indexOf("-bezel") + "-bezel".length()).trim();
-                        int nr = AMbezelFile.indexOf(" ");
-                        if (nr != -1) {
-                            AMbezelFile = AMbezelFile.substring(0, nr);
-                        }
+                     if (scanlineShuntFound.find()) {
+                        int scanShuntInt = Integer.parseInt(scanlineShuntFound.group(1));
+                        System.out.println("Setting Scanline Shunt to: " + scanShuntInt);
+                        final int scanShunt = scanShuntInt;
                         Platform.runLater(() -> {
+                            AMScanlineShunt.setSelected(true);
+                            AMScanlinesShuntView.setDisable(false);
+                            AMscanShuntSlider.setDisable(false);
+                            AMscanShuntSlider.setValue(scanShunt);
+                            AMScanlinesShuntView.setDisable(false);
+                        });
+                    } else {
+                        AMScanlineShunt.setSelected(false);
+                        Platform.runLater(() -> AMscanShuntSlider.setDisable(true));
+                    }
+
+                    if (verticalSkretchFound.find()) {
+                        int verticalSkretchInt = Integer.parseInt(verticalSkretchFound.group(1));
+                        Platform.runLater(() -> {
+                            AMVerticalStretch.setSelected(true);
+                            AMVerticalStretchSlider.setDisable(false);
+                            AMVerticalStretchSlider.setValue(verticalSkretchInt);
+                            AMVerticalStretchView.setDisable(false);
+                        });
+                    } else {
+                        AMVerticalStretch.setSelected(false);
+                        Platform.runLater(() -> AMVerticalStretchSlider.setDisable(true));
+                    }
+
+
+                    Platform.runLater(() -> {
+                        if (finalLine.contains("-gamepad")) {
+                            AMgamepad.setSelected(true);
+                        } else {
+                            AMgamepad.setSelected(false);
+                        }
+                    });
+
+                    Platform.runLater(() -> {
+                        if (finalLine.contains("-tiphat")) {
+                            AMtiphatBox.setSelected(true);
+                        } else {
+                            AMtiphatBox.setSelected(false);
+                        }
+                    });
+
+                    Platform.runLater(() -> {
+                        if (finalLine.contains("-linear_scale")) {
+                            AMlinearscale.setSelected(true);
+                        } else {
+                            AMlinearscale.setSelected(false);
+                        }
+                    });
+
+                    Platform.runLater(() -> {
+                        if (finalLine.contains(("-vertical_screen"))) {
+                            AMverticalscreen.setSelected(true);
+                        } else {
+                            AMverticalscreen.setSelected(false);
+                        }
+                    });
+
+                    // Process -bezel option
+                    if (finalLine.contains("-bezel")) {
+                        Platform.runLater(() -> {
+                            AMbezelCheckBox.setSelected(true);
+                            AMbezelFile = finalLine.substring(finalLine.indexOf("-bezel") + "-bezel".length()).trim();
+                            int nr = AMbezelFile.indexOf(" ");
+                            if (nr != -1) {
+                                AMbezelFile = AMbezelFile.substring(0, nr);
+                            }
+                            //  Platform.runLater(() -> {
                             AMbezelCheckBox.setSelected(true);
                             System.out.println("Setting Bezel File to: " + AMbezelFile);
                         });
@@ -792,29 +1086,129 @@ public class configGUI implements Initializable {
                     // Process force aspect ratio option
                     Platform.runLater(() -> {
                         if (finalLine.contains("-force_aspect_ratio")) {
-                            forceAspect.setDisable(false);
-                            forceAspect.setSelected(true);
-                            ignoreAspectRatio.setSelected(false);
-                            ignoreAspectRatio.setDisable(true);
+                            AMforceAspect.setDisable(false);
+                            AMforceAspect.setSelected(true);
+                            AMignoreAspectRatio.setSelected(false);
+                            AMignoreAspectRatio.setDisable(true);
+
                         } else {
-                            forceAspect.setSelected(false);
-                            ignoreAspectRatio.setDisable(false);
+
+                            AMforceAspect.setSelected(false);
+                            AMignoreAspectRatio.setDisable(false);
                         }
                     });
 
-                Platform.runLater(() -> {
-                    if (finalLine.contains("-ignore_aspect_ratio")) {
-                        ignoreAspectRatio.setDisable(false);
-                        ignoreAspectRatio.setSelected(true);
-                        forceAspect.setSelected(false);
-                        forceAspect.setDisable(true);
-                    } else {
-                        ignoreAspectRatio.setSelected(false);
-                        forceAspect.setDisable(false);
-                    }
-                });
-            }
+                    Platform.runLater(() -> {
+                        if (finalLine.contains("-ignore_aspect_ratio")) {
+                            AMignoreAspectRatio.setDisable(false);
+                            AMignoreAspectRatio.setSelected(true);
+                            AMforceAspect.setSelected(false);
+                            AMforceAspect.setDisable(true);
+                        } else {
+                            AMignoreAspectRatio.setSelected(false);
+                            AMforceAspect.setDisable(false);
+                        }
+                    });
 
+                    Platform.runLater(() -> {
+                        if (finalLine.contains("-scanline")) {
+                            AMscanlines.setSelected(true);
+                        } else {
+                            AMscanlines.setSelected(false);
+                        }
+                    });
+
+                    Platform.runLater(() -> AMScorePanel.setSelected(finalLine.contains("-scorepanel")));
+
+                    Platform.runLater(() -> AMScoreBezel.setSelected(finalLine.contains("-scorebezel")));
+
+                    Platform.runLater(() -> AMEightBit.setSelected(finalLine.contains("-8bit_overlay")));
+
+                    Platform.runLater(() -> AMManyMouse.setSelected(finalLine.contains("-manymouse")));
+
+                    Platform.runLater(() -> {
+                        if (finalLine.contains("-opengl")) {
+                            AMopengl.setSelected(true);
+                            AMvulkan.setSelected(false);
+                        } else {
+                            AMopengl.setSelected(false);
+                        }
+                    });
+
+                    Platform.runLater(() -> {
+                        if (finalLine.contains("-vulkan")) {
+                            AMvulkan.setSelected(true);
+                            AMopengl.setSelected(false);
+                        } else {
+                            AMvulkan.setSelected(false);
+                        }
+                    });
+
+                    Platform.runLater(() -> {
+                        if (finalLine.contains("-gamepad")) {
+                            AMgamepad.setSelected(true);
+                        } else {
+                            AMgamepad.setSelected(false);
+                        }
+                    });
+
+                    Platform.runLater((() -> {
+                        if (finalLine.contains("-nocrosshair")) {
+                            AMnocrosshair.setSelected(true);
+                        } else {
+                            AMnocrosshair.setSelected(false);
+                        }
+                    }));
+
+                    Platform.runLater(() -> {
+                        if (finalLine.contains("-original_overlay")) {
+                            AMOrginalOverlay.setSelected(true);
+                        } else {
+                            AMOrginalOverlay.setSelected(false);
+                        }
+                    });
+
+                    Platform.runLater(() -> {
+                        if (finalLine.contains("-blend_sprites")) {
+                            AMblendSprites.setSelected(true);
+                        } else {
+                            AMblendSprites.setSelected(false);
+                        }
+                    });
+
+                    Platform.runLater(() -> {
+                        if (finalLine.contains("-texturestream")) {
+                            AMtexturestream.setSelected(true);
+                        } else {
+                            AMtexturestream.setSelected(false);
+                        }
+                    });
+
+                    Platform.runLater(() -> {
+                        if (finalLine.contains("-texturetarget")) {
+                            AMtexturetarget.setSelected(true);
+                        } else {
+                            AMtexturetarget.setSelected(false);
+                        }
+                    });
+
+
+
+                    /*Platform.runLater(() -> {
+
+                        String usbScoreString = usbScoreBoardFound.group(1);
+                        String usbScoreString = "com12";
+                        System.out.println("Setting USB Scoreboard to: " + usbScoreBoardFound.group(1));
+                        if (finalLine.contains("-usbscoreboard")) {
+                            AMusbscore.setSelected(true);
+                            AMusbscoreFill.setDisable(false);
+                            AMusbscoreFill.setText(usbScoreString);
+                        } else {
+                            AMusbscore.setSelected(false);
+                            AMusbscoreFill.setDisable(true);
+                        }
+                    }); */
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -822,21 +1216,23 @@ public class configGUI implements Initializable {
             sinden.setSelected(false);
             sindenFill1.setDisable(true);
             sindenFill2.setDisable(true);
-            forceAspect.setSelected(false);
+            AMforceAspect.setSelected(false);
             fullScreen.setSelected(false);
             jsrange.setSelected(false);
-            jsrangeFill.setDisable(true);
+            AMjsrangeFill.setDisable(true);
             AMscaleFactor.setSelected(false);
-            AMscaleFactorSlider.setDisable(true);
+            AMScaleFactorSlider.setDisable(true);
             AMScaleFSliderView.setDisable(true);
             AMscaleAlpha.setSelected(false);
-            AMScanLAlphaSilder.setDisable(true);
+            AMScanAlphaSilder.setDisable(true);
             AMScanASliderView.setDisable(true);
             AMbezelCheckBox.setSelected(false);
         }
     }
 
-
+    /**
+     * Method to read config line with attributes for AM games and set the values in the GUI for single config for each AM game
+     */
     private void setConfigAMPanelSingle(String amgameName) {
         try {
             File readCfg = new File("cfg\\single\\" + amgameName + ".cfg");
@@ -848,6 +1244,9 @@ public class configGUI implements Initializable {
                     Matcher sindenFound = checkSinden.matcher(line);
                     Pattern checkjs = Pattern.compile("-js_range\\s+([1-9]|20)");
                     Matcher jsFound = checkjs.matcher(line);
+                    Pattern checkScaleFactor = Pattern.compile("-scalefactor\\s+([1-9]|100)");
+                    Matcher scaleFacFound = checkScaleFactor.matcher(line);
+                    System.out.println(scaleFacFound);
                     if (sindenFound.find()) {
                         String numberSinden = sindenFound.group(1);
                         String colorSinden = sindenFound.group(2);
@@ -866,14 +1265,13 @@ public class configGUI implements Initializable {
                                 break;
                             case "x":
                                 colorSinden = "x";
-                                colorSinden = "x";
                                 break;
                         }
                         if (jsFound.find()) {
                             String jsRange = jsFound.group(1);
                             jsrange.setSelected(true);
-                            jsrangeFill.setDisable(false);
-                            jsrangeFill.getValueFactory().setValue(Integer.parseInt(jsRange));
+                            AMjsrangeFill.setDisable(false);
+                            AMjsrangeFill.getValueFactory().setValue(Integer.parseInt(jsRange));
                         }
                         sinden.setSelected(true);
                         int numberToInt = Integer.parseInt(numberSinden);
@@ -885,21 +1283,26 @@ public class configGUI implements Initializable {
                         System.out.println(numberSinden + " " + " " + colorSinden);
                     }
                     if (jsFound.find()) {
-
+                        AMjsrangeFill.setDisable(false);
+                        AMjsrangeFill.getValueFactory().setValue(Integer.parseInt(jsFound.group(1)));
+                    } else {
+                        AMjsrangeFill.setDisable(true);
+                        AMjsrangeFill.getValueFactory().setValue(1);
                     }
+
                     if (line.contains("-fullscreen")) {
                         fullScreen.setSelected(true);
                     } else {
                         fullScreen.setSelected(false);
                     }
                     if (line.contains("-force_aspect_ratio")) {
-                        forceAspect.setSelected(true);
+                        AMforceAspect.setSelected(true);
                     } else {
-                        forceAspect.setSelected(false);
+                        AMforceAspect.setSelected(false);
                     }
                     if (line.contains("-scalefactor")) {
                         AMscaleFactor.setSelected(true);
-                        AMscaleFactorSlider.setDisable(false);
+                        AMScaleFactorSlider.setDisable(false);
                         AMScaleFSliderView.setDisable(false);
 
                         // Extracting the scale factor value from the line
@@ -907,27 +1310,27 @@ public class configGUI implements Initializable {
                         String scaleFac = line.substring(startIndex).trim(); // trimming any leading or trailing whitespace
                         int scaleFacInt = Integer.parseInt(scaleFac);
                         System.out.println(scaleFacInt);
-                        AMscaleFactorSlider.setValue(scaleFacInt);
+                        AMScaleFactorSlider.setValue(scaleFacInt);
                         AMScaleFSliderView.setText(scaleFacInt + "%");
                     } else {
                         AMscaleFactor.setSelected(false);
-                        AMscaleFactorSlider.setDisable(true);
+                        AMScaleFactorSlider.setDisable(true);
                         AMScaleFSliderView.setDisable(true);
                     }
                     if (line.contains("-scanline_alpha")) {
                         AMscaleAlpha.setSelected(true);
-                        AMScanLAlphaSilder.setDisable(false);
+                        AMScanAlphaSilder.setDisable(false);
                         AMScanASliderView.setDisable(false);
                         // Extracting the scale value from the line
                         int startIndex = line.indexOf("-scanline_alpha") + "-scanline_alpha".length();
                         String scaleAlp = line.substring(startIndex).trim(); // trimming any leading or trailing whitespace
                         int scaleAlpInt = Integer.parseInt(scaleAlp);
                         System.out.println(scaleAlpInt);
-                        AMScanLAlphaSilder.setValue(scaleAlpInt);
+                        AMScanAlphaSilder.setValue(scaleAlpInt);
                         AMScanASliderView.setText(Integer.toString(scaleAlpInt) + "");
                     } else {
                         AMscaleAlpha.setSelected(false);
-                        AMScanLAlphaSilder.setDisable(true);
+                        AMScanAlphaSilder.setDisable(true);
                         AMScanASliderView.setDisable(true);
                     }
                     if (line.contains("-bezel")) {
@@ -941,15 +1344,20 @@ public class configGUI implements Initializable {
                     } else {
                         AMbezelCheckBox.setSelected(false);
                     }
+                    if (line.contains ("-scanlines")) {
+                        AMscanlines.setSelected(true);
+                    } else {
+                        AMscanlines.setSelected(false);
+                    }
                 }
             } else {
                 sinden.setSelected(false);
                 sindenFill1.setDisable(true);
                 sindenFill2.setDisable(true);
-                forceAspect.setSelected(false);
+                AMforceAspect.setSelected(false);
                 fullScreen.setSelected(false);
                 jsrange.setSelected(false);
-                jsrangeFill.setDisable(true);
+                AMjsrangeFill.setDisable(true);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -957,17 +1365,25 @@ public class configGUI implements Initializable {
 
     }
 
-    // one config for each game on the list
+    /**
+     * Method to write config line with attributes for AM games and set the values in the GUI for single & AIO config
+     */
     public void AMGameConfig(MouseEvent mouseEvent) {
         boolean sindenChecked = sinden.isSelected();
         String sindenFieldOne = sindenFill1.getValue().toString();
         String sindenFieldTwo = sindenFill2.getSelectionModel().getSelectedItem().toString();
         boolean fullScreenChecked = fullScreen.isSelected();
-        boolean forceAspectChecked = forceAspect.isSelected();
+        boolean AMgamepadChecked = AMgamepad.isSelected();
+        boolean AMlinearScaleChecked = AMlinearscale.isSelected();
+        boolean forceAspectChecked = AMforceAspect.isSelected();
         boolean jsRangeChecked = jsrange.isSelected();
         boolean scaleFacChecked = AMscaleFactor.isSelected();
         boolean scaleAlpha = AMscaleAlpha.isSelected();
         boolean AMbezel = AMbezelCheckBox.isSelected();
+        boolean AMtiphatSelect = AMtiphatBox.isSelected();
+        boolean AMverticalScreenSelect = AMverticalscreen.isSelected();
+        boolean AMscanlinesCheck = AMscanlines.isSelected();
+        boolean AMlinearScaleCheck = AMlinearscale.isSelected();
 
         String pathToBinary = readBinaryPath();
         String text = pathToBinary;
@@ -995,27 +1411,87 @@ public class configGUI implements Initializable {
         }
         System.out.println(forceAspectChecked + "<--");
         if (sindenChecked) {
-            options += "-sinden " + sindenFieldOne + " " + color;
+            options += " -sinden " + sindenFieldOne + " " + color;
         }
-        if (fullScreenChecked) {
+        if (fullScreen.isSelected()) {
             options += " -fullscreen";
         }
-        if (forceAspectChecked) {
+        if (AMgamepad.isSelected()) {
+            options += " -gamepad";
+        }
+        if (AMlinearscale.isSelected()) {
+            options += " -linear_scale";
+        }
+        if (AMforceAspect.isSelected()) {
             options += " -force_aspect_ratio";
         }
-        if (jsRangeChecked) {
-            options += " -js_range " + jsrangeFill.getValue().toString();
+        if (AMignoreAspectRatio.isSelected()) {
+            options += " -ignore_aspect_ratio";
         }
-        if (scaleFacChecked) {
+        if (jsrange.isSelected()) {
+            options += " -js_range " + AMjsrangeFill.getValue().toString();
+        }
+        if (AMscaleFactor.isSelected()) {
             int scaleValue = (int) AMScaleFactorSlider.getValue();
             options += " -scalefactor " + scaleValue;
         }
-        if (scaleAlpha) {
-            int alphaValue = (int) AMScanLAlphaSilder.getValue();
+        if (AMscaleAlpha.isSelected()) {
+            int alphaValue = (int) AMScanAlphaSilder.getValue();
             options += " -scanline_alpha " + alphaValue;
         }
-        if (AMbezel && AMbezelFile.length() > 0){
+        if (AMbezel && AMbezelFile.length() > 0) {
             options += " -bezel " + AMbezelFile;
+        }
+        if (AMtiphatBox.isSelected()) {
+            options += " -tiphat";
+        }
+        if (AMverticalscreen.isSelected()) {
+            options += " -vertical_screen";
+        }
+        if (AMscanlines.isSelected()) {
+            options += " -scanlines";
+        }
+        if (AMScoreBezel.isSelected()) {
+            options += " -scorebezel";
+        }
+        if (AMScorePanel.isSelected()) {
+            options += " -scorepanel";
+        }
+        if (AMEightBit.isSelected()) {
+            options += " -8bit_overlay";
+        }
+        if (AMManyMouse.isSelected()) {
+            options += " -manymouse";
+        }
+        if (AMvulkan.isSelected()) {
+            options += " -vulkan";
+        }
+        if (AMopengl.isSelected()) {
+            options += " -opengl";
+        }
+        if(AMnocrosshair.isSelected()) {
+            options += " -nocrosshair";
+        }
+        if (AMOrginalOverlay.isSelected()) {
+            options += " -original_overlay";
+        }
+        if(AMblendSprites.isSelected()) {
+            options += " -blend_sprites";
+        }
+        if(AMtexturestream.isSelected()) {
+            options += " -texturestream";
+        }
+        if((AMtexturetarget.isSelected())) {
+            options += " -texturetarget";
+        }
+        if(AMScanlineShunt.isSelected()) {
+            options += " -scanline_shunt " + (int) AMscanShuntSlider.getValue();
+        }
+        if(AMVerticalStretch.isSelected()) {
+            options += " -vertical_stretch " + (int) AMVerticalStretchSlider.getValue();
+        }
+        if (AMusbscore.isSelected()) {
+            options += " -usbscoreboard " + AMusbscoreFill.getText();
         }
 
         var selection = multiSingleGames.getSelectionModel().getSelectedIndex();
@@ -1048,8 +1524,8 @@ public class configGUI implements Initializable {
                     System.out.println(ex.getMessage());
                 }
             } else {
-                File pathToFile = new File("com/hypseus/alert1.css");
-            //    URL css = getClass().getResource(String.valueOf(pathToFile.toURI()));
+                File pathToFile = new File("alert1.css");
+                //    URL css = getClass().getResource(String.valueOf(pathToFile.toURI()));
                 Alert noSelection = new Alert(Alert.AlertType.INFORMATION);
                 noSelection.getDialogPane().getStylesheets().add(String.valueOf(pathToFile));
                 noSelection.setHeaderText("No game selected");
@@ -1061,10 +1537,12 @@ public class configGUI implements Initializable {
         System.out.println(text);
     }
 
+    /**
+     * Method to disable game selection list if one config for all is selected
+     */
     public void multiGameConfigSelect(ActionEvent actionEvent) {
         int selection = multiSingleGames.getSelectionModel().getSelectedIndex();
         if (selection == 0) {
-            String lineConf = "";
             configAmList.setDisable(true);
             setConfigAMPanelAIO();
         } else {
@@ -1072,42 +1550,23 @@ public class configGUI implements Initializable {
         }
     }
 
-    public void onIgnoreAspectClick(MouseEvent mouseEvent) {
-        if (ignoreAspectRatio.isSelected() == true) {
-            forceAspect.setSelected(false);
-            forceAspect.setDisable(true);
-        } else {
-            forceAspect.setDisable(false);
-        }
+    /**
+     * Method allowing game selection from the list of AM games on the GUI
+     */
+    public void onAMlistSelect(MouseEvent mouseEvent) {
+        String amgameName = configAmList.getSelectionModel().getSelectedItem().toString();
+        setConfigAMPanelSingle(amgameName);
     }
 
-    public void onForceAspectClick(MouseEvent mouseEvent) {
-        if (forceAspect.isSelected() == true) {
-            ignoreAspectRatio.setSelected(false);
-            ignoreAspectRatio.setDisable(true);
-        } else {
-            ignoreAspectRatio.setDisable(false);
-        }
+    /**
+     * Method allowing game selection from the list of Dp games on the GUI
+     */
+    public void DPPathSelect(ActionEvent actionEvent) {
     }
 
-    public void onOpenglClickAm(MouseEvent mouseEvent) {
-        if (openglSelectAm.isSelected() == true) {
-            vulkanSelectAm.setSelected(false);
-            vulkanSelectAm.setDisable(true);
-        } else {
-            vulkanSelectAm.setDisable(false);
-        }
-    }
-
-    public void onVulkanClickAm(MouseEvent mouseEvent) {
-        if (vulkanSelectAm.isSelected() == true) {
-            openglSelectAm.setSelected(false);
-            openglSelectAm.setDisable(true);
-        } else {
-            openglSelectAm.setDisable(false);
-        }
-    }
-
+    /**
+     * Method to read the list of AM games from a file and put them in the list on the GUI
+     */
     private void readAMGamesFileList() {
         int count = 0;
         File config = new File("amlist.lst");
@@ -1124,16 +1583,91 @@ public class configGUI implements Initializable {
         }
     }
 
-
-    public void onAMlistSelect(MouseEvent mouseEvent) {
-        String amgameName = configAmList.getSelectionModel().getSelectedItem().toString();
-        setConfigAMPanelSingle(amgameName);
+    public void AMverticalScreenCheck(MouseEvent mouseEvent) {
+        if (AMverticalscreen.isSelected())
+            AMverticalscreen.setSelected(true);
+        else
+            AMverticalscreen.setSelected(false);
     }
 
-    public void DPPathSelect(ActionEvent actionEvent) {
+    public void AMtiphatSelect(MouseEvent actionEvent) {
+        if (AMtiphatBox.isSelected())
+            AMtiphatBox.setSelected(true);
+        else
+            AMtiphatBox.setSelected(false);
     }
 
-    public void onAMScalefactorSet(MouseEvent mouseEvent) {
+    public void AMselectedJsRange(MouseEvent mouseEvent) {
+        if (jsrange.isSelected())
+            AMjsrangeFill.setDisable(false);
+        else
+            AMjsrangeFill.setDisable(true);
+    }
+
+    public void selectedSinden(MouseEvent mouseEvent) {
+        if (sinden.isSelected()) {
+            sindenFill1.setDisable(false);
+            sindenFill2.setDisable(false);
+            AMManyMouse.setDisable(true);
+        } else {
+            sindenFill1.setDisable(true);
+            sindenFill2.setDisable(true);
+            AMManyMouse.setDisable(false);
+        }
+    }
+
+    public void AMignoreAspectSelect(MouseEvent mouseEvent) {
+        Platform.runLater(() -> {
+            if (AMignoreAspectRatio.isSelected() == true) {
+                AMforceAspect.setSelected(false);
+                AMforceAspect.setDisable(true);
+            } else {
+                AMforceAspect.setDisable(false);
+            }
+        });
+    }
+
+    public void AMforceAspectSelect(MouseEvent mouseEvent) {
+            if (AMforceAspect.isSelected() == true) {
+                AMignoreAspectRatio.setSelected(false);
+                AMignoreAspectRatio.setDisable(true);
+            } else {
+                AMignoreAspectRatio.setDisable(false);
+            }
+    }
+
+    public void AMlinearscaleCheck(MouseEvent mouseEvent) {
+            if (AMlinearscale.isSelected()) {
+                AMlinearscale.setSelected(true);
+            } else {
+                AMlinearscale.setSelected(false);
+            }
+    }
+
+    public void AMscanlinesCheck(MouseEvent mouseEvent) {
+
+        Platform.runLater(() -> {
+        if (AMscanlines.isSelected() == true) {
+                AMscanlines.setSelected(true);
+            } else {
+                AMscanlines.setSelected(false);
+            }
+        });
+    }
+
+    public void AMOpenglCheck(MouseEvent mouseEvent) {
+        if (AMopengl.isSelected() == true) {
+            AMvulkan.setSelected(false);
+        }
+    }
+
+    public void AMVulkanCheck(MouseEvent mouseEvent) {
+        if (AMvulkan.isSelected() == true) {
+            AMopengl.setSelected(false);
+        }
+    }
+
+    public void onAMScalefactorCheck(MouseEvent mouseEvent) {
         if (AMscaleFactor.isSelected()) {
             AMScaleFactorSlider.setDisable(false);
             AMScaleFSliderView.setDisable(false);
@@ -1143,30 +1677,39 @@ public class configGUI implements Initializable {
         }
     }
 
-    public void AMScaleFset(MouseEvent mouseEvent) {
+    /*public void AMScaleFset(MouseEvent mouseEvent) {
         // This method can be used if you need to handle specific mouse events separately
         int scale = (int) AMScaleFactorSlider.getValue();
-        AMScaleFSliderView.setText(Integer.toString(scale));
+        AMScaleFSliderView.setText(Integer.toString(scale) + "%");
+    }*/
+
+    public void AMgamepadCheck(MouseEvent mouseEvent) {
+        if (AMgamepad.isSelected()) {
+            AMgamepad.setSelected(true);
+        } else {
+            AMgamepad.setSelected(false);
+        }
     }
 
-    public void onAMScanAlphaSet(MouseEvent mouseEvent) {
-        if (AMScanLAlphaSilder.isDisable()) {
-            AMScanLAlphaSilder.setDisable(false);
+    public void onAMScanAlphaCheck(MouseEvent mouseEvent) {
+        if (AMScanAlphaSilder.isDisable()) {
+            AMScanAlphaSilder.setDisable(false);
             AMScanASliderView.setDisable(false);
         } else {
-            AMScanLAlphaSilder.setDisable(true);
+            AMScanAlphaSilder.setDisable(true);
             AMScanASliderView.setDisable(true);
         }
     }
-    public void AMScanAlphaSet(MouseEvent mouseEvent) {
-    int scale = (int) AMScanLAlphaSilder.getValue();
-    AMScanASliderView.setText(Integer.toString(scale));
-    }
 
-    public void bezelChecked(MouseEvent mouseEvent) {
-        if (AMbezelCheckBox.isSelected())
-            AMpngBezel.setDisable(false);
-        else
+   /* public void AMScanAlphaSet(MouseEvent mouseEvent) {
+        int scale = (int) AMScanAlphaSilder.getValue();
+        AMScanASliderView.setText(Integer.toString(scale));
+    }*/
+
+    public void AMbezelChecked (MouseEvent mouseEvent){
+            if (AMbezelCheckBox.isSelected())
+                AMpngBezel.setDisable(false);
+            else
             AMpngBezel.setDisable(true);
     }
 
@@ -1186,14 +1729,117 @@ public class configGUI implements Initializable {
             file = file.substring(nr + 1);
             System.out.println("bezel file --> " + file);
             AMbezelFile = file;
-
-
-
         } else {
             System.out.println("No selection");
         }
     }
+
+    public void AMScorePanelCheck(MouseEvent mouseEvent) {
+        if (AMScorePanel.isSelected()) {
+            AMScorePanel.setSelected(true);
+        } else {
+            AMScorePanel.setSelected(false);
+        }
+    }
+
+    public void AMScoreBezelCheck(MouseEvent mouseEvent) {
+        if (AMScoreBezel.isSelected()) {
+            AMScoreBezel.setSelected(true);
+        } else {
+            AMScoreBezel.setSelected(false);
+        }
+    }
+
+    public void AMEightBitCheck(MouseEvent mouseEvent) {
+        if (AMEightBit.isSelected()) {
+            AMEightBit.setSelected(true);
+        } else {
+            AMEightBit.setSelected(false);
+        }
+    }
+
+    public void AMManyMouseCheck(MouseEvent mouseEvent) {
+        if (AMManyMouse.isSelected()) {
+            AMManyMouse.setSelected(true);
+        } else {
+            AMManyMouse.setSelected(false);
+        }
+    }
+
+    public void AMcrosshairCheck(MouseEvent mouseEvent) {
+        if (AMnocrosshair.isSelected()) {
+            AMnocrosshair.setSelected(true);
+        } else {
+            AMnocrosshair.setSelected(false);
+        }
+    }
+
+    public void AMorginaloverlayCheck(MouseEvent mouseEvent) {
+        if (AMOrginalOverlay.isSelected()) {
+            AMOrginalOverlay.setSelected(true);
+        } else {
+            AMOrginalOverlay.setSelected(false);
+        }
+    }
+
+    public void AMblendSpritesCheck(MouseEvent mouseEvent) {
+                if (AMblendSprites.isSelected()) {
+                    AMblendSprites.setSelected(true);
+                } else {
+                    AMblendSprites.setSelected(false);
+                }
+    }
+
+    public void AMtexturesCheck(MouseEvent mouseEvent) {
+        if (AMtexturestream.isSelected() == true) {
+            AMtexturetarget.setSelected(false);
+        }
+    }
+
+    public void AMtexturetargetCheck(MouseEvent mouseEvent) {
+        if (AMtexturetarget.isSelected() == true) {
+            AMtexturestream.setSelected(false);
+        }
+    }
+
+    public void onAMScanlineShuntCheck(MouseEvent mouseEvent) {
+        if (AMScanlineShunt.isSelected()) {
+            AMScanlineShunt.setSelected(true);
+            AMScanlinesShuntView.setDisable(false);
+            AMscanShuntSlider.setDisable(false);
+        } else {
+            AMScanlineShunt.setSelected(false);
+            AMScanlinesShuntView.setDisable(true);
+            AMscanShuntSlider.setDisable(true);
+        }
+    }
+
+    public void onAMVerticalStretchCheck(MouseEvent mouseEvent) {
+        if (AMVerticalStretch.isSelected()) {
+            AMVerticalStretch.setSelected(true);
+            AMVerticalStretchSlider.setDisable(false);
+            AMVerticalStretchView.setDisable(false);
+        } else {
+            AMVerticalStretch.setSelected(false);
+            AMVerticalStretch.setDisable(true);
+            AMVerticalStretchView.setDisable(true);
+        }
+    }
+
+    public void onAMusbscoreCheck(MouseEvent mouseEvent) {
+        if (AMusbscore.isSelected()) {
+            AMusbscore.setSelected(true);
+            AMusbscoreFill.setDisable(false);
+        } else {
+            AMusbscore.setSelected(false);
+        }
+    }
+
+
     @FXML
+    /**
+     * Method to save additional handwritten attributes for AM games
+     */
     private void AMAddAditionalArgs(MouseEvent mouseEvent) {
         try {
             ClipboardContent content = new ClipboardContent();
@@ -1202,7 +1848,7 @@ public class configGUI implements Initializable {
             } else {
                 if (configAmList.getSelectionModel().getSelectedItem() == null) {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "You have to select a game from the list", ButtonType.OK);
-                    alert.getDialogPane().getStylesheets().add("com/hypseus/alert.css");
+                    alert.getDialogPane().getStylesheets().add("alert1.css");
                     alert.showAndWait();
                     return;
                 }
@@ -1222,8 +1868,8 @@ public class configGUI implements Initializable {
             // Create the new scene and stage
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-            controller.setStages(mainStage, stage);  // Pass the current and previous stages to the controller
-
+            // Pass the current and previous stages to the controller
+            controller.setStages(mainStage, stage);
             stage.setScene(scene);
             stage.setTitle("Additional arguments for American Laser Games");
             stage.getIcons().add(new Image(HypseusSingeGuiApp.class.getResourceAsStream("img/hypseus-logo_thumb.png")));
@@ -1231,18 +1877,27 @@ public class configGUI implements Initializable {
             stage.initOwner(((Node) mouseEvent.getSource()).getScene().getWindow());
 
             stage.showAndWait();
-        //    stage.show();
-        //    mainStage.hide();
+            //    stage.show();
+            //    mainStage.hide();
         } catch (IOException e) {
             e.printStackTrace();
             // addToLog(time + " " + "error while opening configuration window: " + e.getMessage());
         }
     }
 
+    public void onAMblankSearchCheck(MouseEvent mouseEvent) {
+    }
+
+    public void onAmBlankSkipsCheck(MouseEvent mouseEvent) {
+    }
+
     @Override
+    /**
+     * Method to initialize the GUI
+     */
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       // System.out.println("Initializing...");
-       //    pathCfg = new PathCfg();
+        // System.out.println("Initializing...");
+        //    pathCfg = new PathCfg();
         sindenFill1.setDisable(true);
         sindenFill2.setDisable(true);
         dataDeSerialize("pconfig.cfg");
@@ -1295,20 +1950,18 @@ public class configGUI implements Initializable {
         multiSingleGames.getStyleClass().add("Button50L");
         AMPathSelection.getStyleClass().add("Button50L");
         binaryPath.getStyleClass().add("Button50L");
-        jsrangeFill.setDisable(true);
+        AMjsrangeFill.setDisable(true);
         AMScaleFactorSlider.setDisable(true);
         AMpngBezel.setDisable(true);
         AMbezelFile = "";
 
-        SpinnerValueFactory<Integer> factory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20, 1);
-        jsrangeFill.setValueFactory(factory1);
 
+        SpinnerValueFactory<Integer> factory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20, 1);
+        AMjsrangeFill.setValueFactory(factory1);
         valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1);
         sindenFill1.setValueFactory(valueFactory);
         sindenFill2.getItems().addAll("white", "red", "green", "blue", "x");
         sindenFill2.getSelectionModel().select(4);
-
-
         String getSystemInfo = "";
         String getDisplayInfo = "";
         String nameOS = "os.name";
@@ -1323,14 +1976,14 @@ public class configGUI implements Initializable {
                     + "\nFree space (bytes): " + root.getFreeSpace()
                     + "\nUsable space (bytes): " + root.getUsableSpace());
         }*/
-        String systemInfo = ("OS Name: " + System.getProperty(nameOS)
+       /* String systemInfo = ("OS Name: " + System.getProperty(nameOS)
                 + "\nOS Version: " + System.getProperty(versionOS)
                 + "\nArchitecture: " + System.getProperty(architectureOS)
                 + "\nAvailable processors (cores): " + Runtime.getRuntime().availableProcessors()
                 + "\nFree memory (bytes): " + Runtime.getRuntime().freeMemory()
                 + "\nTotal memory available to JVM (bytes): " + Runtime.getRuntime().totalMemory()
                 + "\nJava Version: " + System.getProperty(javaVersion)
-                + diskInfo);
+                + diskInfo);*/
         readConfig();
         SystemInfo si = new SystemInfo();
         HardwareAbstractionLayer hal = si.getHardware();
@@ -1344,7 +1997,7 @@ public class configGUI implements Initializable {
         parseGfxData();
         getSystemInfo = cpu + "\n" + mem + "\n" + sys + "\n" + vmem + "\n" + os;
         showSystemInfo(getSystemInfo);
-        System.out.println("GFX to function -> " + gfx);
+        // System.out.println("GFX to function -> " + gfx);
         showDisplayInfo(parseGfxData() + "\n" + display);
         //    System.out.println(gfx + display);
         AMScaleFactorSlider.setDisable(true);
@@ -1355,14 +2008,30 @@ public class configGUI implements Initializable {
             int scale = (int) AMScaleFactorSlider.getValue();
             AMScaleFSliderView.setText(scale + "%");
         });
-        AMScanLAlphaSilder.setDisable(true);
+        AMScanAlphaSilder.setDisable(true);
         AMScanASliderView.setDisable(true);
-        AMScanLAlphaSilder.valueProperty().addListener((ChangeListener<? super Number>) (observable, oldValue, newValue) -> {
-            int scanAlpha = (int) AMScanLAlphaSilder.getValue();
-            AMScanASliderView.setText(scanAlpha+ "");
+        AMScanAlphaSilder.valueProperty().addListener((ChangeListener<? super Number>) (observable, oldValue, newValue) -> {
+            int scanAlpha = (int) AMScanAlphaSilder.getValue();
+            AMScanASliderView.setText(String.valueOf(scanAlpha));
+        });
+        AMscanShuntSlider.setDisable(true);
+        AMScanlinesShuntView.setDisable(true);
+        AMscanShuntSlider.valueProperty().addListener((ChangeListener<? super Number>) (observable, oldValue, newValue) -> {
+            int scanShunt = (int) AMscanShuntSlider.getValue();
+            AMScanlinesShuntView.setText(String.valueOf(scanShunt));
+        });
+        AMVerticalStretchSlider.setDisable(true);
+        AMVerticalStretchView.setDisable(true);
+        AMVerticalStretchSlider.valueProperty().addListener((ChangeListener<? super Number>) (observable, oldValue, newValue) -> {
+            int scanShunt = (int) AMVerticalStretchSlider.getValue();
+            AMVerticalStretchView.setText(String.valueOf(scanShunt));
         });
         getsavedTempAttrib();
         readAMGamesFileList();
 
     }
+
+    public void DPScorePanelCheck(MouseEvent mouseEvent) {
+    }
+
 }

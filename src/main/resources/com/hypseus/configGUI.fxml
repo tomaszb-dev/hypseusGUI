@@ -255,7 +255,7 @@
                               <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <CheckBox fx:id="forceAspect1" mnemonicParsing="false" onMouseClicked="#onForceAspectClick" prefHeight="48.0" prefWidth="221.0" text="force_aspect_ratio" GridPane.rowIndex="2">
+                              <CheckBox fx:id="forceAspect1" mnemonicParsing="false" onMouseClicked="#AMforceAspectSelect" prefHeight="48.0" prefWidth="221.0" text="force_aspect_ratio" GridPane.rowIndex="2">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -297,7 +297,7 @@
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="ignoreAspectRatio1" mnemonicParsing="false" onMouseClicked="#onIgnoreAspectClick" prefHeight="49.0" prefWidth="223.0" text="ignore_aspect_ratio" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES">
+                              <CheckBox fx:id="ignoreAspectRatio1" mnemonicParsing="false" onMouseClicked="#AMignoreAspectSelect" prefHeight="49.0" prefWidth="223.0" text="ignore_aspect_ratio" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -507,12 +507,12 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <RadioButton fx:id="openglSelectAm2" mnemonicParsing="false" onMouseClicked="#onOpenglClickAm" prefHeight="30.0" prefWidth="111.0" text="opengl">
+                                    <RadioButton fx:id="openglSelectAm2" mnemonicParsing="false" onMouseClicked="#AMOpenglCheck" prefHeight="30.0" prefWidth="111.0" text="opengl">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
                                     </RadioButton>
-                                    <RadioButton fx:id="vulkanSelectAm2" mnemonicParsing="false" onMouseClicked="#onVulkanClickAm" prefHeight="28.0" prefWidth="111.0" text="vulkan" GridPane.columnIndex="1">
+                                    <RadioButton fx:id="vulkanSelectAm2" mnemonicParsing="false" onMouseClicked="#AMVulkanCheck" prefHeight="28.0" prefWidth="111.0" text="vulkan" GridPane.columnIndex="1">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -616,18 +616,18 @@
                               <RowConstraints maxHeight="126.0" minHeight="10.0" percentHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <CheckBox fx:id="forceAspect" mnemonicParsing="false" onMouseClicked="#onForceAspectClick" prefHeight="48.0" prefWidth="221.0" text="force_aspect_ratio">
+                              <CheckBox fx:id="AMforceAspect" mnemonicParsing="false" onMouseClicked="#AMforceAspectSelect" prefHeight="48.0" prefWidth="221.0" text="force_aspect_ratio">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="jsrange" mnemonicParsing="false" onMouseClicked="#selectedJsRange" prefHeight="48.0" prefWidth="194.0" text="js range" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                              <CheckBox fx:id="jsrange" mnemonicParsing="false" onMouseClicked="#AMselectedJsRange" prefHeight="48.0" prefWidth="194.0" text="js range" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <Spinner fx:id="jsrangeFill" prefHeight="46.0" prefWidth="284.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
-                              <CheckBox fx:id="gamepad" mnemonicParsing="false" prefHeight="44.0" prefWidth="223.0" text="gamepad" GridPane.rowIndex="1">
+                              <Spinner fx:id="AMjsrangeFill" prefHeight="46.0" prefWidth="284.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
+                              <CheckBox fx:id="AMgamepad" mnemonicParsing="false" onMouseClicked="#AMgamepadCheck" prefHeight="44.0" prefWidth="223.0" text="gamepad" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -659,7 +659,7 @@
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="AMbezelCheckBox" mnemonicParsing="false" onMouseClicked="#bezelChecked" prefHeight="52.0" prefWidth="195.0" text="bezel" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
+                              <CheckBox fx:id="AMbezelCheckBox" mnemonicParsing="false" onMouseClicked="#AMbezelChecked" prefHeight="52.0" prefWidth="195.0" text="bezel" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -679,17 +679,17 @@
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </Button>
-                              <CheckBox fx:id="ignoreAspectRatio" mnemonicParsing="false" onMouseClicked="#onIgnoreAspectClick" prefHeight="49.0" prefWidth="223.0" text="ignore_aspect_ratio" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+                              <CheckBox fx:id="AMignoreAspectRatio" mnemonicParsing="false" onMouseClicked="#AMignoreAspectSelect" prefHeight="49.0" prefWidth="223.0" text="ignore_aspect_ratio" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="AMscaleFactor" mnemonicParsing="false" onMouseClicked="#onAMScalefactorSet" prefHeight="45.0" prefWidth="195.0" text="scalefactor" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES">
+                              <CheckBox fx:id="AMscaleFactor" mnemonicParsing="false" onMouseClicked="#onAMScalefactorCheck" prefHeight="45.0" prefWidth="195.0" text="scalefactor" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox mnemonicParsing="false" prefHeight="48.0" prefWidth="223.0" text="linear_scale" GridPane.rowIndex="5">
+                              <CheckBox fx:id="AMlinearscale" mnemonicParsing="false" onMouseClicked="#AMlinearscaleCheck" prefHeight="48.0" prefWidth="223.0" text="linear_scale" GridPane.rowIndex="5">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -697,67 +697,67 @@
                                     <Insets />
                                  </GridPane.margin>
                               </CheckBox>
-                              <CheckBox mnemonicParsing="false" prefHeight="43.0" prefWidth="223.0" text="scorepanel" GridPane.rowIndex="7">
+                              <CheckBox fx:id="DPScorePanel" mnemonicParsing="false" onMouseClicked="#DPScorePanelCheck" prefHeight="43.0" prefWidth="223.0" text="scorepanel" GridPane.rowIndex="7">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox mnemonicParsing="false" prefHeight="51.0" prefWidth="223.0" text="tiphat" GridPane.rowIndex="8">
+                              <CheckBox fx:id="AMtiphatBox" mnemonicParsing="false" onMouseClicked="#AMtiphatSelect" prefHeight="51.0" prefWidth="223.0" text="tiphat" GridPane.rowIndex="8">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox mnemonicParsing="false" prefHeight="51.0" prefWidth="221.0" text="vertical_screen" GridPane.rowIndex="9">
+                              <CheckBox fx:id="AMverticalscreen" mnemonicParsing="false" onMouseClicked="#AMverticalScreenCheck" prefHeight="51.0" prefWidth="221.0" text="vertical_screen" GridPane.rowIndex="9">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox mnemonicParsing="false" prefHeight="46.0" prefWidth="223.0" text="8bit_overlay" GridPane.rowIndex="10">
+                              <CheckBox fx:id="AMEightBit" mnemonicParsing="false" onMouseClicked="#AMEightBitCheck" prefHeight="46.0" prefWidth="223.0" text="8bit_overlay" GridPane.rowIndex="10">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox mnemonicParsing="false" prefHeight="59.0" prefWidth="278.0" text="original_overlay" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                              <CheckBox fx:id="AMOrginalOverlay" mnemonicParsing="false" onMouseClicked="#AMorginaloverlayCheck" prefHeight="59.0" prefWidth="278.0" text="original_overlay" GridPane.columnIndex="1" GridPane.rowIndex="11">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox mnemonicParsing="false" prefHeight="48.0" prefWidth="223.0" text="scorebezel" GridPane.rowIndex="6">
+                              <CheckBox fx:id="AMScoreBezel" mnemonicParsing="false" onMouseClicked="#AMScoreBezelCheck" prefHeight="48.0" prefWidth="223.0" text="scorebezel" GridPane.rowIndex="6">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox mnemonicParsing="false" prefHeight="52.0" prefWidth="223.0" text="scanlines" GridPane.rowIndex="4">
+                              <CheckBox fx:id="AMscanlines" mnemonicParsing="false" onMouseClicked="#AMscanlinesCheck" prefHeight="52.0" prefWidth="223.0" text="scanlines" GridPane.rowIndex="4">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox mnemonicParsing="false" prefHeight="45.0" prefWidth="195.0" text="blend_sprites" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                              <CheckBox fx:id="AMblendSprites" mnemonicParsing="false" onMouseClicked="#AMblendSpritesCheck" prefHeight="45.0" prefWidth="195.0" text="blend_sprites" GridPane.columnIndex="1" GridPane.rowIndex="8">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox mnemonicParsing="false" prefHeight="52.0" prefWidth="195.0" text="manymouse" GridPane.rowIndex="11">
+                              <CheckBox fx:id="AMManyMouse" mnemonicParsing="false" onMouseClicked="#AMManyMouseCheck" prefHeight="52.0" prefWidth="195.0" text="manymouse" GridPane.rowIndex="11">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox mnemonicParsing="false" prefHeight="46.0" prefWidth="195.0" text="nocrosshair" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                              <CheckBox fx:id="AMnocrosshair" mnemonicParsing="false" onMouseClicked="#AMcrosshairCheck" prefHeight="46.0" prefWidth="195.0" text="nocrosshair" GridPane.columnIndex="1" GridPane.rowIndex="9">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="AMscaleAlpha" mnemonicParsing="false" onMouseClicked="#onAMScanAlphaSet" prefHeight="51.0" prefWidth="195.0" text="scanline_alpha" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <CheckBox fx:id="AMscaleAlpha" mnemonicParsing="false" onMouseClicked="#onAMScanAlphaCheck" prefHeight="51.0" prefWidth="195.0" text="scanline_alpha" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox mnemonicParsing="false" prefHeight="45.0" prefWidth="195.0" text="vertical_stretch " GridPane.columnIndex="1" GridPane.rowIndex="7">
+                              <CheckBox fx:id="AMVerticalStretch" mnemonicParsing="false" onMouseClicked="#onAMVerticalStretchCheck" prefHeight="45.0" prefWidth="195.0" text="vertical_stretch " GridPane.columnIndex="1" GridPane.rowIndex="7">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox mnemonicParsing="false" prefHeight="53.0" prefWidth="194.0" text="scanline_shunt" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                              <CheckBox fx:id="AMScanlineShunt" mnemonicParsing="false" onMouseClicked="#onAMScanlineShuntCheck" prefHeight="53.0" prefWidth="194.0" text="scanline_shunt" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                  <font>
                                     <Font name="System Bold" size="17.0" />
                                  </font>
@@ -798,12 +798,12 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </CheckBox>
-                                    <TextField alignment="CENTER" promptText="X" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                                    <TextField alignment="CENTER" promptText="x" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </TextField>
-                                    <TextField alignment="CENTER" prefWidth="181.0" promptText="Y" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <TextField alignment="CENTER" prefWidth="181.0" promptText="y" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -819,21 +819,21 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <CheckBox mnemonicParsing="false" prefHeight="56.0" prefWidth="137.0" text="usbscoreboard" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                                    <CheckBox fx:id="AMusbscore" mnemonicParsing="false" onMouseClicked="#onAMusbscoreCheck" prefHeight="56.0" prefWidth="137.0" text="usbscoreboard" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </CheckBox>
-                                    <TextField prefWidth="125.0" promptText="&lt;args&gt;" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                                    <TextField fx:id="AMusbscoreFill" alignment="CENTER" prefWidth="146.0" promptText="&lt;args&gt;" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </TextField>
                                  </children>
                               </GridPane>
-                              <CheckBox mnemonicParsing="false" prefHeight="53.0" prefWidth="195.0" text="scorepanel_pos" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                              <CheckBox fx:id="AMScorePanel" mnemonicParsing="false" onMouseClicked="#AMScorePanelCheck" prefHeight="53.0" prefWidth="195.0" text="scorepanel_position" GridPane.columnIndex="1" GridPane.rowIndex="10">
                                  <font>
-                                    <Font name="System Bold" size="17.0" />
+                                    <Font name="System Bold" size="16.0" />
                                  </font>
                               </CheckBox>
                               <GridPane GridPane.columnIndex="2" GridPane.rowIndex="9">
@@ -846,18 +846,18 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <CheckBox mnemonicParsing="false" prefHeight="20.0" prefWidth="141.0" text="blank_searches">
+                                    <CheckBox fx:id="AMblankSearches" mnemonicParsing="false" onMouseClicked="#onAMblankSearchCheck" prefHeight="20.0" prefWidth="141.0" text="blank_searches">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </CheckBox>
-                                    <CheckBox fx:id="blankSkips" mnemonicParsing="false" prefHeight="20.0" prefWidth="146.0" text="blank_skips" GridPane.rowIndex="1">
+                                    <CheckBox fx:id="AMblankSkips" mnemonicParsing="false" onMouseClicked="#onAmBlankSkipsCheck" prefHeight="20.0" prefWidth="146.0" text="blank_skips" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </CheckBox>
-                                    <TextField GridPane.columnIndex="1" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="AMblankSearchesFill" GridPane.columnIndex="1" />
+                                    <TextField fx:id="AMblankSkipsFill" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                               <GridPane GridPane.columnIndex="2" GridPane.rowIndex="10">
@@ -869,12 +869,12 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <TextField alignment="CENTER" prefHeight="37.0" prefWidth="278.0" promptText="X">
+                                    <TextField fx:id="AMScorePanelX" alignment="CENTER" prefHeight="37.0" prefWidth="278.0" promptText="x">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </TextField>
-                                    <TextField alignment="CENTER" prefHeight="17.0" prefWidth="278.0" promptText="Y" GridPane.rowIndex="1">
+                                    <TextField fx:id="AMScorePanelY" alignment="CENTER" prefHeight="17.0" prefWidth="278.0" promptText="y" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -890,12 +890,12 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <RadioButton fx:id="openglSelectAm" mnemonicParsing="false" onMouseClicked="#onOpenglClickAm" prefHeight="30.0" prefWidth="111.0" text="opengl">
+                                    <RadioButton fx:id="AMopengl" mnemonicParsing="false" onMouseClicked="#AMOpenglCheck" prefHeight="30.0" prefWidth="111.0" text="opengl">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
                                     </RadioButton>
-                                    <RadioButton fx:id="vulkanSelectAm" mnemonicParsing="false" onMouseClicked="#onVulkanClickAm" prefHeight="28.0" prefWidth="111.0" text="vulkan" GridPane.columnIndex="1">
+                                    <RadioButton fx:id="AMvulkan" mnemonicParsing="false" onMouseClicked="#AMVulkanCheck" prefHeight="28.0" prefWidth="111.0" text="vulkan" GridPane.columnIndex="1">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -911,12 +911,12 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <RadioButton mnemonicParsing="false" prefHeight="27.0" prefWidth="167.0" text="texturestream">
+                                    <RadioButton fx:id="AMtexturestream" mnemonicParsing="false" onMouseClicked="#AMtexturesCheck" prefHeight="27.0" prefWidth="167.0" text="texturestream">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" prefHeight="20.0" prefWidth="169.0" text="texturetarget" GridPane.rowIndex="1">
+                                    <RadioButton fx:id="AMtexturetarget" mnemonicParsing="false" onMouseClicked="#AMtexturetargetCheck" prefHeight="20.0" prefWidth="169.0" text="texturetarget" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="System Bold" size="17.0" />
                                        </font>
@@ -941,8 +941,8 @@
                                     <RowConstraints />
                                  </rowConstraints>
                                  <children>
-                                    <Slider fx:id="AMScaleFactorSlider" blockIncrement="1.0" majorTickUnit="5.0" min="25.0" minorTickCount="5" onMouseClicked="#AMScaleFset" showTickLabels="true" showTickMarks="true" GridPane.rowIndex="10" />
-                                    <Label fx:id="AMScaleFSliderView" alignment="CENTER" contentDisplay="CENTER" text="25%" textAlignment="JUSTIFY" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                    <Slider fx:id="AMScaleFactorSlider" blockIncrement="0.0" majorTickUnit="5.0" min="50.0" minorTickCount="5" showTickLabels="true" showTickMarks="true" value="50.0" GridPane.rowIndex="10" />
+                                    <Label fx:id="AMScaleFSliderView" alignment="CENTER" contentDisplay="CENTER" text="50%" textAlignment="JUSTIFY" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
@@ -961,7 +961,7 @@
                                     <RowConstraints maxHeight="53.000000953674316" minHeight="10.0" prefHeight="35.33335367838542" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Slider fx:id="AMScanLAlphaSilder" blockIncrement="25.0" max="255.0" min="1.0" minorTickCount="1" onMouseClicked="#AMScanAlphaSet" showTickLabels="true" showTickMarks="true" GridPane.rowIndex="1" />
+                                    <Slider fx:id="AMScanAlphaSilder" blockIncrement="0.0" majorTickUnit="49.0" max="255.0" min="1.0" minorTickCount="5" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" GridPane.rowIndex="1" />
                                     <Label fx:id="AMScanASliderView" text="1" textAlignment="JUSTIFY" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
@@ -969,7 +969,7 @@
                                     </Label>
                                  </children>
                               </GridPane>
-                              <GridPane GridPane.columnIndex="2" GridPane.rowIndex="6">
+                              <GridPane fx:id="AMScanlineShuntSlider" GridPane.columnIndex="2" GridPane.rowIndex="6">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                  </columnConstraints>
@@ -978,7 +978,12 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Slider majorTickUnit="5.0" max="255.0" min="1.0" minorTickCount="1" GridPane.rowIndex="1" />
+                                    <Slider fx:id="AMscanShuntSlider" blockIncrement="0.0" majorTickUnit="1.0" max="10.0" min="2.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" value="2.0" GridPane.rowIndex="1" />
+                                    <Label fx:id="AMScanlinesShuntView" contentDisplay="CENTER" text="2" wrapText="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </GridPane>
                               <GridPane GridPane.columnIndex="2" GridPane.rowIndex="7">
@@ -990,7 +995,12 @@
                                     <RowConstraints maxHeight="33.33331298828125" minHeight="10.0" prefHeight="30.6666259765625" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Slider GridPane.rowIndex="1" />
+                                    <Slider fx:id="AMVerticalStretchSlider" blockIncrement="1.0" majorTickUnit="4.0" max="24.0" min="1.0" minorTickCount="4" showTickLabels="true" showTickMarks="true" value="1.0" GridPane.rowIndex="1" />
+                                    <Label fx:id="AMVerticalStretchView" contentDisplay="CENTER" text="1" textAlignment="JUSTIFY" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </GridPane>
                               <Button fx:id="AMAdditionalArgs" mnemonicParsing="false" onMouseClicked="#AMAddAditionalArgs" prefHeight="46.0" prefWidth="195.0" text="Additional arguments" GridPane.columnIndex="1" GridPane.rowIndex="12">
